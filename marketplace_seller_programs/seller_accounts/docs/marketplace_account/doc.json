@@ -1,0 +1,27 @@
+{
+  "doc_key": "marketplace_account",
+  "doc_title": "Marketplace Account",
+  "doc_kind": "master",
+  "status": "draft",
+  "module_id": "marketplace_seller_programs",
+  "submodule_id": "seller_accounts",
+  "app_id": "marketplace_participation_ecosystem",
+  "base_action_profile": "base_record_actions",
+  "doc_archetype": "master",
+  "classification": {
+    "archetype": "master",
+    "bundle": "ecosystem"
+  },
+  "planning_source": {
+    "type": "reference_doc_generation_manifest",
+    "bundle": "ecosystem",
+    "app": "marketplace_participation_ecosystem",
+    "module": "marketplace_seller_programs",
+    "submodule": "seller_accounts",
+    "reference_doc_id": "marketplace_account",
+    "evidence_gaps": [
+      "marketplace-account hierarchy",
+      "multi-store handling"
+    ]
+  }
+}

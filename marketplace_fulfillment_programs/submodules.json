@@ -1,0 +1,6 @@
+{
+  "submodules": [
+    "fulfillment_exchange",
+    "returns_management"
+  ]
+}

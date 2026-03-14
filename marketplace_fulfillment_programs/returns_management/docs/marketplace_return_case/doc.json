@@ -1,0 +1,27 @@
+{
+  "doc_key": "marketplace_return_case",
+  "doc_title": "Marketplace Return Case",
+  "doc_kind": "workflow_case",
+  "status": "draft",
+  "module_id": "marketplace_fulfillment_programs",
+  "submodule_id": "returns_management",
+  "app_id": "marketplace_participation_ecosystem",
+  "base_action_profile": "base_record_actions",
+  "doc_archetype": "workflow_case",
+  "classification": {
+    "archetype": "workflow_case",
+    "bundle": "ecosystem"
+  },
+  "planning_source": {
+    "type": "reference_doc_generation_manifest",
+    "bundle": "ecosystem",
+    "app": "marketplace_participation_ecosystem",
+    "module": "marketplace_fulfillment_programs",
+    "submodule": "returns_management",
+    "reference_doc_id": "marketplace_return_case",
+    "evidence_gaps": [
+      "reimbursement/claim model",
+      "return logistics flow"
+    ]
+  }
+}

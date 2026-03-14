@@ -1,0 +1,108 @@
+{
+  "doc_id": "marketplace_inventory_feed",
+  "doc_title": "Marketplace Inventory Feed",
+  "archetype": "ledger",
+  "doc_kind": "ledger",
+  "actions": [
+    "record",
+    "transmit",
+    "review",
+    "archive"
+  ],
+  "lifecycle": {
+    "initial_state": "created",
+    "states": [
+      "created",
+      "transmitted",
+      "accepted",
+      "failed",
+      "archived"
+    ],
+    "terminal_states": [
+      "archived"
+    ]
+  },
+  "related_doc_count": 4,
+  "fetch_rule_count": 0,
+  "action_handler_count": 4,
+  "archetype_profile": {
+    "workflow_profile": {
+      "mode": "posting_flow",
+      "supports_reconciliation": true
+    },
+    "reporting_profile": {
+      "supports_snapshots": true,
+      "supports_outputs": true
+    },
+    "integration_profile": {
+      "external_sync_enabled": true,
+      "tracks_external_refs": true
+    },
+    "lifecycle_states": [
+      "created",
+      "transmitted",
+      "accepted",
+      "failed",
+      "archived"
+    ],
+    "is_transactional": true
+  },
+  "contract_summary": {
+    "title_field": "title",
+    "status_field": "workflow_state",
+    "reference_field": "reference_no",
+    "required_fields": [
+      "title",
+      "workflow_state",
+      "posting_date"
+    ],
+    "field_purposes": {
+      "workflow_state": "lifecycle_state",
+      "posting_date": "posting_date",
+      "feed_date": "schedule_marker",
+      "feed_status": "status_flag"
+    },
+    "search_fields": [
+      "title",
+      "reference_no",
+      "description",
+      "feed_code",
+      "marketplace_account",
+      "source_inventory_reference"
+    ],
+    "list_columns": [
+      "title",
+      "reference_no",
+      "posting_date",
+      "workflow_state"
+    ],
+    "initial_state": "created",
+    "lifecycle_states": [
+      "created",
+      "transmitted",
+      "accepted",
+      "failed",
+      "archived"
+    ],
+    "terminal_states": [
+      "archived"
+    ],
+    "action_targets": {
+      "record": null,
+      "transmit": null,
+      "review": null,
+      "archive": "archived"
+    }
+  },
+  "workflow_hints": {},
+  "related_docs": [
+    "marketplace_account",
+    "listing_binding",
+    "marketplace_fulfillment_order",
+    "inventory_balance"
+  ],
+  "borrowed_fields": [
+    "listing",
+    "inventory context from linked docs"
+  ]
+}

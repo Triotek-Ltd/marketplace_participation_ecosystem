@@ -1,0 +1,27 @@
+{
+  "doc_key": "listing_binding",
+  "doc_title": "Listing Binding",
+  "doc_kind": "transaction",
+  "status": "draft",
+  "module_id": "marketplace_seller_programs",
+  "submodule_id": "listing_bindings",
+  "app_id": "marketplace_participation_ecosystem",
+  "base_action_profile": "base_record_actions",
+  "doc_archetype": "transaction",
+  "classification": {
+    "archetype": "transaction",
+    "bundle": "ecosystem"
+  },
+  "planning_source": {
+    "type": "reference_doc_generation_manifest",
+    "bundle": "ecosystem",
+    "app": "marketplace_participation_ecosystem",
+    "module": "marketplace_seller_programs",
+    "submodule": "listing_bindings",
+    "reference_doc_id": "listing_binding",
+    "evidence_gaps": [
+      "variation/listing-family model",
+      "sync-conflict rules"
+    ]
+  }
+}

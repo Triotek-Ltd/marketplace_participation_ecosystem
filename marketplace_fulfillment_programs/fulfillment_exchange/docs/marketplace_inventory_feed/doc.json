@@ -1,0 +1,27 @@
+{
+  "doc_key": "marketplace_inventory_feed",
+  "doc_title": "Marketplace Inventory Feed",
+  "doc_kind": "ledger",
+  "status": "draft",
+  "module_id": "marketplace_fulfillment_programs",
+  "submodule_id": "fulfillment_exchange",
+  "app_id": "marketplace_participation_ecosystem",
+  "base_action_profile": "base_record_actions",
+  "doc_archetype": "ledger",
+  "classification": {
+    "archetype": "ledger",
+    "bundle": "ecosystem"
+  },
+  "planning_source": {
+    "type": "reference_doc_generation_manifest",
+    "bundle": "ecosystem",
+    "app": "marketplace_participation_ecosystem",
+    "module": "marketplace_fulfillment_programs",
+    "submodule": "fulfillment_exchange",
+    "reference_doc_id": "marketplace_inventory_feed",
+    "evidence_gaps": [
+      "feed granularity",
+      "discrepancy-resolution rules"
+    ]
+  }
+}

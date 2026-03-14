@@ -1,0 +1,126 @@
+{
+  "doc_id": "marketplace_fulfillment_order",
+  "doc_title": "Marketplace Fulfillment Order",
+  "archetype": "transaction",
+  "doc_kind": "transaction",
+  "actions": [
+    "create",
+    "transmit",
+    "accept",
+    "fulfill",
+    "flag_exception",
+    "close",
+    "archive"
+  ],
+  "lifecycle": {
+    "initial_state": "draft",
+    "states": [
+      "draft",
+      "transmitted",
+      "accepted",
+      "fulfilled",
+      "exception",
+      "closed",
+      "archived"
+    ],
+    "terminal_states": [
+      "closed",
+      "archived"
+    ]
+  },
+  "related_doc_count": 4,
+  "fetch_rule_count": 0,
+  "action_handler_count": 7,
+  "archetype_profile": {
+    "workflow_profile": {
+      "mode": "transaction_flow",
+      "supports_submission": true
+    },
+    "reporting_profile": {
+      "supports_snapshots": true,
+      "supports_outputs": true
+    },
+    "integration_profile": {
+      "external_sync_enabled": true,
+      "tracks_external_refs": true
+    },
+    "lifecycle_states": [
+      "draft",
+      "transmitted",
+      "accepted",
+      "fulfilled",
+      "exception",
+      "closed",
+      "archived"
+    ],
+    "is_transactional": true
+  },
+  "contract_summary": {
+    "title_field": "title",
+    "status_field": "workflow_state",
+    "reference_field": "reference_no",
+    "required_fields": [
+      "title",
+      "workflow_state",
+      "transaction_date"
+    ],
+    "field_purposes": {
+      "workflow_state": "lifecycle_state",
+      "transaction_date": "transaction_date",
+      "party": "primary_party",
+      "currency": "currency_code",
+      "total_amount": "total_amount",
+      "request_date": "schedule_marker",
+      "fulfillment_status": "status_flag"
+    },
+    "search_fields": [
+      "title",
+      "reference_no",
+      "description",
+      "fulfillment_order_code",
+      "marketplace_account",
+      "source_reference"
+    ],
+    "list_columns": [
+      "title",
+      "reference_no",
+      "transaction_date",
+      "party",
+      "total_amount",
+      "workflow_state"
+    ],
+    "initial_state": "draft",
+    "lifecycle_states": [
+      "draft",
+      "transmitted",
+      "accepted",
+      "fulfilled",
+      "exception",
+      "closed",
+      "archived"
+    ],
+    "terminal_states": [
+      "closed",
+      "archived"
+    ],
+    "action_targets": {
+      "create": null,
+      "transmit": null,
+      "accept": null,
+      "fulfill": null,
+      "flag_exception": null,
+      "close": "closed",
+      "archive": "archived"
+    }
+  },
+  "workflow_hints": {},
+  "related_docs": [
+    "marketplace_account",
+    "marketplace_inventory_feed",
+    "marketplace_return_case",
+    "external_fulfillment_order"
+  ],
+  "borrowed_fields": [
+    "order/account context from linked marketplace or operations docs"
+  ]
+}

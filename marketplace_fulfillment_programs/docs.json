@@ -1,0 +1,7 @@
+{
+  "docs": [
+    "marketplace_fulfillment_order",
+    "marketplace_inventory_feed",
+    "marketplace_return_case"
+  ]
+}

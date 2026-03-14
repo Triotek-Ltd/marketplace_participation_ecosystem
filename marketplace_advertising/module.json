@@ -1,0 +1,8 @@
+{
+  "id": "marketplace_advertising",
+  "title": "Marketplace Advertising",
+  "app_id": "marketplace_participation_ecosystem",
+  "type": "module",
+  "status": "draft",
+  "supports_submodules": true
+}

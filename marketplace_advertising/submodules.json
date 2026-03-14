@@ -1,0 +1,6 @@
+{
+  "submodules": [
+    "ad_programs",
+    "performance_tracking"
+  ]
+}

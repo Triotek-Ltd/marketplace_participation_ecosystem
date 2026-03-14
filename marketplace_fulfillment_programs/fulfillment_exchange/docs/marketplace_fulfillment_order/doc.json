@@ -1,0 +1,27 @@
+{
+  "doc_key": "marketplace_fulfillment_order",
+  "doc_title": "Marketplace Fulfillment Order",
+  "doc_kind": "transaction",
+  "status": "draft",
+  "module_id": "marketplace_fulfillment_programs",
+  "submodule_id": "fulfillment_exchange",
+  "app_id": "marketplace_participation_ecosystem",
+  "base_action_profile": "base_record_actions",
+  "doc_archetype": "transaction",
+  "classification": {
+    "archetype": "transaction",
+    "bundle": "ecosystem"
+  },
+  "planning_source": {
+    "type": "reference_doc_generation_manifest",
+    "bundle": "ecosystem",
+    "app": "marketplace_participation_ecosystem",
+    "module": "marketplace_fulfillment_programs",
+    "submodule": "fulfillment_exchange",
+    "reference_doc_id": "marketplace_fulfillment_order",
+    "evidence_gaps": [
+      "line-item structure",
+      "split-fulfillment handling"
+    ]
+  }
+}

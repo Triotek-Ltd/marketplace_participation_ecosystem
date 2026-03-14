@@ -1,0 +1,7 @@
+{
+  "modules": [
+    "marketplace_advertising",
+    "marketplace_fulfillment_programs",
+    "marketplace_seller_programs"
+  ]
+}

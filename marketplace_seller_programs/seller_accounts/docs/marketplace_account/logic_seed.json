@@ -1,0 +1,102 @@
+{
+  "doc_id": "marketplace_account",
+  "doc_title": "Marketplace Account",
+  "archetype": "master",
+  "doc_kind": "master",
+  "actions": [
+    "create",
+    "activate",
+    "suspend",
+    "archive"
+  ],
+  "lifecycle": {
+    "initial_state": "requested",
+    "states": [
+      "requested",
+      "approved",
+      "active",
+      "suspended",
+      "archived"
+    ],
+    "terminal_states": [
+      "archived"
+    ]
+  },
+  "related_doc_count": 3,
+  "fetch_rule_count": 0,
+  "action_handler_count": 4,
+  "archetype_profile": {
+    "workflow_profile": {
+      "mode": "entity_lifecycle",
+      "case_management": false
+    },
+    "reporting_profile": {
+      "supports_snapshots": false,
+      "supports_outputs": false
+    },
+    "integration_profile": {
+      "external_sync_enabled": false
+    },
+    "lifecycle_states": [
+      "requested",
+      "approved",
+      "active",
+      "suspended",
+      "archived"
+    ],
+    "is_transactional": false
+  },
+  "contract_summary": {
+    "title_field": "title",
+    "status_field": "workflow_state",
+    "reference_field": "reference_no",
+    "required_fields": [
+      "title",
+      "workflow_state"
+    ],
+    "field_purposes": {
+      "workflow_state": "lifecycle_state",
+      "active_status": "status_flag"
+    },
+    "search_fields": [
+      "title",
+      "reference_no",
+      "description",
+      "account_code",
+      "marketplace_identity",
+      "external_account_reference"
+    ],
+    "list_columns": [
+      "title",
+      "reference_no",
+      "workflow_state",
+      "modified"
+    ],
+    "initial_state": "requested",
+    "lifecycle_states": [
+      "requested",
+      "approved",
+      "active",
+      "suspended",
+      "archived"
+    ],
+    "terminal_states": [
+      "archived"
+    ],
+    "action_targets": {
+      "create": null,
+      "activate": "active",
+      "suspend": null,
+      "archive": "archived"
+    }
+  },
+  "workflow_hints": {},
+  "related_docs": [
+    "seller_onboarding_case",
+    "listing_binding",
+    "marketplace_campaign"
+  ],
+  "borrowed_fields": [
+    "marketplace program context from onboarding/config records"
+  ]
+}
