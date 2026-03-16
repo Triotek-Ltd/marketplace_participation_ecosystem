@@ -74,7 +74,12 @@
         "assigned_owner",
         "final_disposition"
       ],
-      "relations": [],
+      "relations": [
+        "related_marketplace_fulfillment_order",
+        "related_listing_binding",
+        "related_refund_case",
+        "related_delivery_exception_case"
+      ],
       "amounts": [],
       "dates": [],
       "parties": [],
@@ -333,6 +338,102 @@
           "filterable": true,
           "sortable": true
         }
+      },
+      {
+        "field_id": "related_marketplace_fulfillment_order",
+        "label": "Related Marketplace Fulfillment Order",
+        "type": "Table MultiSelect",
+        "required": false,
+        "read_only": false,
+        "default": null,
+        "unique": false,
+        "options": null,
+        "purpose": "relation_collection",
+        "linked_doc": "marketplace_fulfillment_order",
+        "depends_on": null,
+        "mandatory_depends_on": null,
+        "read_only_depends_on": null,
+        "fetch_from": null,
+        "allow_on_submit": false,
+        "indexed": false,
+        "ui": {
+          "visible": false,
+          "list_visible": false,
+          "filterable": false,
+          "sortable": false
+        }
+      },
+      {
+        "field_id": "related_listing_binding",
+        "label": "Related Listing Binding",
+        "type": "Table MultiSelect",
+        "required": false,
+        "read_only": false,
+        "default": null,
+        "unique": false,
+        "options": null,
+        "purpose": "relation_collection",
+        "linked_doc": "listing_binding",
+        "depends_on": null,
+        "mandatory_depends_on": null,
+        "read_only_depends_on": null,
+        "fetch_from": null,
+        "allow_on_submit": false,
+        "indexed": false,
+        "ui": {
+          "visible": false,
+          "list_visible": false,
+          "filterable": false,
+          "sortable": false
+        }
+      },
+      {
+        "field_id": "related_refund_case",
+        "label": "Related Refund Case",
+        "type": "Table MultiSelect",
+        "required": false,
+        "read_only": false,
+        "default": null,
+        "unique": false,
+        "options": null,
+        "purpose": "relation_collection",
+        "linked_doc": "refund_case",
+        "depends_on": null,
+        "mandatory_depends_on": null,
+        "read_only_depends_on": null,
+        "fetch_from": null,
+        "allow_on_submit": false,
+        "indexed": false,
+        "ui": {
+          "visible": false,
+          "list_visible": false,
+          "filterable": false,
+          "sortable": false
+        }
+      },
+      {
+        "field_id": "related_delivery_exception_case",
+        "label": "Related Delivery Exception Case",
+        "type": "Table MultiSelect",
+        "required": false,
+        "read_only": false,
+        "default": null,
+        "unique": false,
+        "options": null,
+        "purpose": "relation_collection",
+        "linked_doc": "delivery_exception_case",
+        "depends_on": null,
+        "mandatory_depends_on": null,
+        "read_only_depends_on": null,
+        "fetch_from": null,
+        "allow_on_submit": false,
+        "indexed": false,
+        "ui": {
+          "visible": false,
+          "list_visible": false,
+          "filterable": false,
+          "sortable": false
+        }
       }
     ],
     "title_field": "title",
@@ -474,17 +575,43 @@
       {
         "role_id": "System Manager",
         "actions": [
-          "create",
-          "update",
           "view",
           "list",
-          "record",
+          "create",
           "review",
-          "assign",
-          "track",
-          "monitor",
-          "confirm",
+          "approve",
+          "reject",
+          "complete",
+          "escalate",
+          "close",
           "archive"
+        ]
+      },
+      {
+        "role_id": "account owner",
+        "actions": [
+          "view",
+          "list",
+          "create",
+          "close",
+          "archive"
+        ]
+      },
+      {
+        "role_id": "operations coordinator",
+        "actions": [
+          "view",
+          "list",
+          "review",
+          "approve",
+          "reject"
+        ]
+      },
+      {
+        "role_id": "case owner",
+        "actions": [
+          "view",
+          "list"
         ]
       }
     ],
@@ -567,7 +694,32 @@
         "show_in_related_panel": true
       }
     ],
-    "lookup_rules": [],
+    "lookup_rules": [
+      {
+        "field_id": "related_marketplace_fulfillment_order",
+        "doc_id": "marketplace_fulfillment_order",
+        "lookup_mode": "multiple",
+        "purpose": "relation_collection"
+      },
+      {
+        "field_id": "related_listing_binding",
+        "doc_id": "listing_binding",
+        "lookup_mode": "multiple",
+        "purpose": "relation_collection"
+      },
+      {
+        "field_id": "related_refund_case",
+        "doc_id": "refund_case",
+        "lookup_mode": "multiple",
+        "purpose": "relation_collection"
+      },
+      {
+        "field_id": "related_delivery_exception_case",
+        "doc_id": "delivery_exception_case",
+        "lookup_mode": "multiple",
+        "purpose": "relation_collection"
+      }
+    ],
     "fetch_rules": [],
     "reference_map": {
       "primary_reference_field": "reference_no",
@@ -575,7 +727,12 @@
     },
     "relation_rules": {
       "parent_doc": null,
-      "child_docs": [],
+      "child_docs": [
+        "marketplace_fulfillment_order",
+        "listing_binding",
+        "refund_case",
+        "delivery_exception_case"
+      ],
       "show_related_panel": true
     },
     "borrowed_fields": [
@@ -596,7 +753,51 @@
     "runtime_hints": {
       "doc_key": "marketplace_return_case",
       "supports_related_lookup": true,
-      "supports_fetch_rules": true
+      "supports_fetch_rules": true,
+      "workflow_hints": {
+        "relation_context": {
+          "related_docs": [
+            "marketplace_fulfillment_order",
+            "listing_binding",
+            "refund_case",
+            "delivery_exception_case"
+          ],
+          "borrowed_fields": [
+            "source order/listing context from linked docs"
+          ],
+          "inferred_roles": [
+            "account owner",
+            "operations coordinator",
+            "case owner"
+          ]
+        },
+        "actors": [
+          "account owner",
+          "operations coordinator",
+          "case owner"
+        ],
+        "action_actors": {
+          "create": [
+            "account owner"
+          ],
+          "review": [
+            "operations coordinator"
+          ],
+          "approve": [
+            "operations coordinator"
+          ],
+          "reject": [
+            "operations coordinator"
+          ],
+          "close": [
+            "account owner"
+          ],
+          "archive": [
+            "account owner"
+          ]
+        }
+      },
+      "action_side_effects_file": "side_effects.json"
     }
   },
   "classification": {
@@ -672,6 +873,9 @@
       "reports": "reports/service.py",
       "integrations": "integrations/service.py"
     },
+    "runtime_contract": {
+      "side_effects_file": "side_effects.json"
+    },
     "action_handlers": {
       "base_dir": "actions",
       "registry": "actions/registry.py",
@@ -692,6 +896,62 @@
       "doc_kind": "workflow_case"
     }
   },
+  "testing": {
+    "seeded": true,
+    "api_base_path": "/apis/marketplace_participation_ecosystem/marketplace_fulfillment_programs/returns_management/marketplace_return_case/",
+    "status_field": "workflow_state",
+    "initial_state": "requested",
+    "required_fields": [
+      "title",
+      "workflow_state"
+    ],
+    "transition_scenarios": [
+      {
+        "action_id": "review",
+        "source_state": "requested",
+        "target_state": "reviewed",
+        "disallowed_state": "closed"
+      },
+      {
+        "action_id": "approve",
+        "source_state": "requested",
+        "target_state": "approved",
+        "disallowed_state": "closed"
+      },
+      {
+        "action_id": "reject",
+        "source_state": "requested",
+        "target_state": "rejected",
+        "disallowed_state": "closed"
+      },
+      {
+        "action_id": "escalate",
+        "source_state": "requested",
+        "target_state": "escalated",
+        "disallowed_state": "closed"
+      },
+      {
+        "action_id": "close",
+        "source_state": "requested",
+        "target_state": "closed",
+        "disallowed_state": "closed"
+      },
+      {
+        "action_id": "archive",
+        "source_state": "requested",
+        "target_state": "archived",
+        "disallowed_state": "closed"
+      }
+    ],
+    "related_docs": [
+      "marketplace_fulfillment_order",
+      "listing_binding",
+      "refund_case",
+      "delivery_exception_case"
+    ],
+    "downstream_effects": [],
+    "action_side_effects_file": "side_effects.json"
+  },
   "runtime": {
     "source_of_truth": "doc_folder",
     "generated_from": [
@@ -699,7 +959,8 @@
       "schema.json",
       "actions.json",
       "settings.json",
-      "logic_seed.json"
+      "logic_seed.json",
+      "side_effects.json"
     ],
     "generator": "plug.apps.doc.file_handler"
   }

@@ -8,7 +8,7 @@ ACTION_ID = "complete"
 ACTION_RULE = {'allowed_in_states': ['requested', 'reviewed', 'approved', 'rejected', 'completed', 'escalated'], 'transitions_to': None}
 
 STATE_FIELD = 'workflow_state'
-WORKFLOW_HINTS = {}
+WORKFLOW_HINTS = {'relation_context': {'related_docs': ['marketplace_fulfillment_order', 'listing_binding', 'refund_case', 'delivery_exception_case'], 'borrowed_fields': ['source order/listing context from linked docs'], 'inferred_roles': ['account owner', 'operations coordinator', 'case owner']}, 'actors': ['account owner', 'operations coordinator', 'case owner'], 'action_actors': {'create': ['account owner'], 'review': ['operations coordinator'], 'approve': ['operations coordinator'], 'reject': ['operations coordinator'], 'close': ['account owner'], 'archive': ['account owner']}}
 
 def handle_complete(payload: dict, context: dict | None = None) -> dict:
     context = context or {}

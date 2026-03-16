@@ -56,7 +56,11 @@
         "clicks_conversions_summary",
         "performance_state"
       ],
-      "relations": [],
+      "relations": [
+        "related_marketplace_campaign",
+        "related_sponsored_listing_record",
+        "related_campaign_result"
+      ],
       "amounts": [],
       "dates": [
         "posting_date"
@@ -336,6 +340,78 @@
           "filterable": true,
           "sortable": true
         }
+      },
+      {
+        "field_id": "related_marketplace_campaign",
+        "label": "Related Marketplace Campaign",
+        "type": "Table MultiSelect",
+        "required": false,
+        "read_only": false,
+        "default": null,
+        "unique": false,
+        "options": null,
+        "purpose": "relation_collection",
+        "linked_doc": "marketplace_campaign",
+        "depends_on": null,
+        "mandatory_depends_on": null,
+        "read_only_depends_on": null,
+        "fetch_from": null,
+        "allow_on_submit": false,
+        "indexed": false,
+        "ui": {
+          "visible": false,
+          "list_visible": false,
+          "filterable": false,
+          "sortable": false
+        }
+      },
+      {
+        "field_id": "related_sponsored_listing_record",
+        "label": "Related Sponsored Listing Record",
+        "type": "Table MultiSelect",
+        "required": false,
+        "read_only": false,
+        "default": null,
+        "unique": false,
+        "options": null,
+        "purpose": "relation_collection",
+        "linked_doc": "sponsored_listing_record",
+        "depends_on": null,
+        "mandatory_depends_on": null,
+        "read_only_depends_on": null,
+        "fetch_from": null,
+        "allow_on_submit": false,
+        "indexed": false,
+        "ui": {
+          "visible": false,
+          "list_visible": false,
+          "filterable": false,
+          "sortable": false
+        }
+      },
+      {
+        "field_id": "related_campaign_result",
+        "label": "Related Campaign Result",
+        "type": "Table MultiSelect",
+        "required": false,
+        "read_only": false,
+        "default": null,
+        "unique": false,
+        "options": null,
+        "purpose": "relation_collection",
+        "linked_doc": "campaign_result",
+        "depends_on": null,
+        "mandatory_depends_on": null,
+        "read_only_depends_on": null,
+        "fetch_from": null,
+        "allow_on_submit": false,
+        "indexed": false,
+        "ui": {
+          "visible": false,
+          "list_visible": false,
+          "filterable": false,
+          "sortable": false
+        }
       }
     ],
     "title_field": "title",
@@ -404,16 +480,10 @@
       {
         "role_id": "System Manager",
         "actions": [
-          "create",
-          "update",
           "view",
           "list",
           "record",
           "review",
-          "assign",
-          "track",
-          "monitor",
-          "confirm",
           "archive"
         ]
       }
@@ -492,7 +562,26 @@
         "show_in_related_panel": true
       }
     ],
-    "lookup_rules": [],
+    "lookup_rules": [
+      {
+        "field_id": "related_marketplace_campaign",
+        "doc_id": "marketplace_campaign",
+        "lookup_mode": "multiple",
+        "purpose": "relation_collection"
+      },
+      {
+        "field_id": "related_sponsored_listing_record",
+        "doc_id": "sponsored_listing_record",
+        "lookup_mode": "multiple",
+        "purpose": "relation_collection"
+      },
+      {
+        "field_id": "related_campaign_result",
+        "doc_id": "campaign_result",
+        "lookup_mode": "multiple",
+        "purpose": "relation_collection"
+      }
+    ],
     "fetch_rules": [],
     "reference_map": {
       "primary_reference_field": "reference_no",
@@ -500,7 +589,11 @@
     },
     "relation_rules": {
       "parent_doc": null,
-      "child_docs": [],
+      "child_docs": [
+        "marketplace_campaign",
+        "sponsored_listing_record",
+        "campaign_result"
+      ],
       "show_related_panel": true
     },
     "borrowed_fields": [
@@ -524,7 +617,8 @@
     "runtime_hints": {
       "doc_key": "campaign_performance_snapshot",
       "supports_related_lookup": true,
-      "supports_fetch_rules": true
+      "supports_fetch_rules": true,
+      "action_side_effects_file": "side_effects.json"
     }
   },
   "classification": {
@@ -600,6 +694,9 @@
       "reports": "reports/service.py",
       "integrations": "integrations/service.py"
     },
+    "runtime_contract": {
+      "side_effects_file": "side_effects.json"
+    },
     "action_handlers": {
       "base_dir": "actions",
       "registry": "actions/registry.py",
@@ -615,6 +712,38 @@
       "doc_kind": "ledger"
     }
   },
+  "testing": {
+    "seeded": true,
+    "api_base_path": "/apis/marketplace_participation_ecosystem/marketplace_advertising/performance_tracking/campaign_performance_snapshot/",
+    "status_field": "workflow_state",
+    "initial_state": "created",
+    "required_fields": [
+      "title",
+      "workflow_state",
+      "posting_date"
+    ],
+    "transition_scenarios": [
+      {
+        "action_id": "review",
+        "source_state": "created",
+        "target_state": "reviewed",
+        "disallowed_state": "archived"
+      },
+      {
+        "action_id": "archive",
+        "source_state": "created",
+        "target_state": "archived",
+        "disallowed_state": "archived"
+      }
+    ],
+    "related_docs": [
+      "marketplace_campaign",
+      "sponsored_listing_record",
+      "campaign_result"
+    ],
+    "downstream_effects": [],
+    "action_side_effects_file": "side_effects.json"
+  },
   "runtime": {
     "source_of_truth": "doc_folder",
     "generated_from": [
@@ -622,7 +751,8 @@
       "schema.json",
       "actions.json",
       "settings.json",
-      "logic_seed.json"
+      "logic_seed.json",
+      "side_effects.json"
     ],
     "generator": "plug.apps.doc.file_handler"
   }

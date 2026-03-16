@@ -33,7 +33,32 @@
       "show_in_related_panel": true
     }
   ],
-  "lookup_rules": [],
+  "lookup_rules": [
+    {
+      "field_id": "related_marketplace_fulfillment_order",
+      "doc_id": "marketplace_fulfillment_order",
+      "lookup_mode": "multiple",
+      "purpose": "relation_collection"
+    },
+    {
+      "field_id": "related_listing_binding",
+      "doc_id": "listing_binding",
+      "lookup_mode": "multiple",
+      "purpose": "relation_collection"
+    },
+    {
+      "field_id": "related_refund_case",
+      "doc_id": "refund_case",
+      "lookup_mode": "multiple",
+      "purpose": "relation_collection"
+    },
+    {
+      "field_id": "related_delivery_exception_case",
+      "doc_id": "delivery_exception_case",
+      "lookup_mode": "multiple",
+      "purpose": "relation_collection"
+    }
+  ],
   "fetch_rules": [],
   "reference_map": {
     "primary_reference_field": "reference_no",
@@ -41,7 +66,12 @@
   },
   "relation_rules": {
     "parent_doc": null,
-    "child_docs": [],
+    "child_docs": [
+      "marketplace_fulfillment_order",
+      "listing_binding",
+      "refund_case",
+      "delivery_exception_case"
+    ],
     "show_related_panel": true
   },
   "borrowed_fields": [
@@ -62,6 +92,50 @@
   "runtime_hints": {
     "doc_key": "marketplace_return_case",
     "supports_related_lookup": true,
-    "supports_fetch_rules": true
+    "supports_fetch_rules": true,
+    "workflow_hints": {
+      "relation_context": {
+        "related_docs": [
+          "marketplace_fulfillment_order",
+          "listing_binding",
+          "refund_case",
+          "delivery_exception_case"
+        ],
+        "borrowed_fields": [
+          "source order/listing context from linked docs"
+        ],
+        "inferred_roles": [
+          "account owner",
+          "operations coordinator",
+          "case owner"
+        ]
+      },
+      "actors": [
+        "account owner",
+        "operations coordinator",
+        "case owner"
+      ],
+      "action_actors": {
+        "create": [
+          "account owner"
+        ],
+        "review": [
+          "operations coordinator"
+        ],
+        "approve": [
+          "operations coordinator"
+        ],
+        "reject": [
+          "operations coordinator"
+        ],
+        "close": [
+          "account owner"
+        ],
+        "archive": [
+          "account owner"
+        ]
+      }
+    },
+    "action_side_effects_file": "side_effects.json"
   }
 }

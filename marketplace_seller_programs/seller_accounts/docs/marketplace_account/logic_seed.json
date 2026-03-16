@@ -56,7 +56,10 @@
     ],
     "field_purposes": {
       "workflow_state": "lifecycle_state",
-      "active_status": "status_flag"
+      "active_status": "status_flag",
+      "related_seller_onboarding_case": "relation_collection",
+      "related_listing_binding": "relation_collection",
+      "related_marketplace_campaign": "relation_collection"
     },
     "search_fields": [
       "title",
@@ -90,7 +93,37 @@
       "archive": "archived"
     }
   },
-  "workflow_hints": {},
+  "workflow_hints": {
+    "relation_context": {
+      "related_docs": [
+        "seller_onboarding_case",
+        "listing_binding",
+        "marketplace_campaign"
+      ],
+      "borrowed_fields": [
+        "marketplace program context from onboarding/config records"
+      ],
+      "inferred_roles": [
+        "case owner"
+      ]
+    },
+    "actors": [
+      "case owner"
+    ],
+    "action_actors": {
+      "create": [
+        "case owner"
+      ],
+      "activate": [
+        "case owner"
+      ],
+      "archive": [
+        "case owner"
+      ]
+    }
+  },
+  "downstream_effects": [],
+  "action_side_effects_file": "side_effects.json",
   "related_docs": [
     "seller_onboarding_case",
     "listing_binding",

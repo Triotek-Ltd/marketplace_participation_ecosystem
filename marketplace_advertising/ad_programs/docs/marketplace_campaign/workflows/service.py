@@ -11,7 +11,7 @@ TERMINAL_STATES = ['archived']
 ACTION_RULES = {'create': {'allowed_in_states': ['draft', 'approved', 'active', 'paused', 'completed'], 'transitions_to': None}, 'review': {'allowed_in_states': ['draft', 'approved', 'active', 'paused', 'completed'], 'transitions_to': None}, 'approve': {'allowed_in_states': ['draft', 'approved', 'active', 'paused', 'completed'], 'transitions_to': 'approved'}, 'launch': {'allowed_in_states': ['draft', 'approved', 'active', 'paused', 'completed'], 'transitions_to': None}, 'pause': {'allowed_in_states': ['draft', 'approved', 'active', 'paused', 'completed'], 'transitions_to': None}, 'close': {'allowed_in_states': ['draft', 'approved', 'active', 'paused', 'completed'], 'transitions_to': None}, 'archive': {'allowed_in_states': ['draft', 'approved', 'active', 'paused', 'completed'], 'transitions_to': 'archived'}}
 
 STATE_FIELD = 'workflow_state'
-WORKFLOW_HINTS = {}
+WORKFLOW_HINTS = {'relation_context': {'related_docs': ['marketplace_account', 'sponsored_listing_record', 'campaign_performance_snapshot'], 'borrowed_field_context': ['account', 'listing context from marketplace-account bindings'], 'inferred_roles': ['Finance Officer']}, 'actors': ['Finance Officer'], 'action_actors': {'create': ['Finance Officer'], 'review': ['Finance Officer'], 'approve': ['Finance Officer'], 'launch': ['Finance Officer'], 'pause': ['Finance Officer'], 'close': ['Finance Officer'], 'archive': ['Finance Officer']}}
 
 class WorkflowService:
     def allowed_actions_for_state(self, state: str | None) -> list[str]:

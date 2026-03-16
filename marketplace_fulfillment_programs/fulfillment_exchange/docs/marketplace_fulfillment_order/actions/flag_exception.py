@@ -8,7 +8,7 @@ ACTION_ID = "flag_exception"
 ACTION_RULE = {'allowed_in_states': ['draft', 'transmitted', 'accepted', 'fulfilled', 'exception'], 'transitions_to': None}
 
 STATE_FIELD = 'workflow_state'
-WORKFLOW_HINTS = {}
+WORKFLOW_HINTS = {'relation_context': {'related_docs': ['marketplace_account', 'marketplace_inventory_feed', 'marketplace_return_case', 'external_fulfillment_order'], 'borrowed_fields': ['order/account context from linked marketplace or operations docs'], 'inferred_roles': ['account owner', 'operations coordinator', 'case owner']}, 'actors': ['account owner', 'operations coordinator', 'case owner'], 'action_actors': {'create': ['account owner'], 'close': ['account owner'], 'archive': ['account owner']}}
 
 def handle_flag_exception(payload: dict, context: dict | None = None) -> dict:
     context = context or {}

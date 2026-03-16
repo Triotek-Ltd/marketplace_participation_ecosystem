@@ -284,6 +284,78 @@
         "filterable": true,
         "sortable": true
       }
+    },
+    {
+      "field_id": "related_marketplace_campaign",
+      "label": "Related Marketplace Campaign",
+      "type": "Table MultiSelect",
+      "required": false,
+      "read_only": false,
+      "default": null,
+      "unique": false,
+      "options": null,
+      "purpose": "relation_collection",
+      "linked_doc": "marketplace_campaign",
+      "depends_on": null,
+      "mandatory_depends_on": null,
+      "read_only_depends_on": null,
+      "fetch_from": null,
+      "allow_on_submit": false,
+      "indexed": false,
+      "ui": {
+        "visible": false,
+        "list_visible": false,
+        "filterable": false,
+        "sortable": false
+      }
+    },
+    {
+      "field_id": "related_sponsored_listing_record",
+      "label": "Related Sponsored Listing Record",
+      "type": "Table MultiSelect",
+      "required": false,
+      "read_only": false,
+      "default": null,
+      "unique": false,
+      "options": null,
+      "purpose": "relation_collection",
+      "linked_doc": "sponsored_listing_record",
+      "depends_on": null,
+      "mandatory_depends_on": null,
+      "read_only_depends_on": null,
+      "fetch_from": null,
+      "allow_on_submit": false,
+      "indexed": false,
+      "ui": {
+        "visible": false,
+        "list_visible": false,
+        "filterable": false,
+        "sortable": false
+      }
+    },
+    {
+      "field_id": "related_campaign_result",
+      "label": "Related Campaign Result",
+      "type": "Table MultiSelect",
+      "required": false,
+      "read_only": false,
+      "default": null,
+      "unique": false,
+      "options": null,
+      "purpose": "relation_collection",
+      "linked_doc": "campaign_result",
+      "depends_on": null,
+      "mandatory_depends_on": null,
+      "read_only_depends_on": null,
+      "fetch_from": null,
+      "allow_on_submit": false,
+      "indexed": false,
+      "ui": {
+        "visible": false,
+        "list_visible": false,
+        "filterable": false,
+        "sortable": false
+      }
     }
   ],
   "field_groups": {
@@ -308,7 +380,11 @@
       "clicks_conversions_summary",
       "performance_state"
     ],
-    "relations": [],
+    "relations": [
+      "related_marketplace_campaign",
+      "related_sponsored_listing_record",
+      "related_campaign_result"
+    ],
     "amounts": [],
     "dates": [
       "posting_date"
@@ -377,16 +453,10 @@
     {
       "role_id": "System Manager",
       "actions": [
-        "create",
-        "update",
         "view",
         "list",
         "record",
         "review",
-        "assign",
-        "track",
-        "monitor",
-        "confirm",
         "archive"
       ]
     }

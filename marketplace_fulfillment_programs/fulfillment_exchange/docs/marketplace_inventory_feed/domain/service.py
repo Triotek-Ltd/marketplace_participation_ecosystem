@@ -5,9 +5,11 @@ from __future__ import annotations
 
 ARCHETYPE_PROFILE = {'workflow_profile': {'mode': 'posting_flow', 'supports_reconciliation': True}, 'reporting_profile': {'supports_snapshots': True, 'supports_outputs': True}, 'integration_profile': {'external_sync_enabled': True, 'tracks_external_refs': True}, 'lifecycle_states': ['created', 'transmitted', 'accepted', 'failed', 'archived'], 'is_transactional': True}
 
-CONTRACT = {'title_field': 'title', 'status_field': 'workflow_state', 'reference_field': 'reference_no', 'required_fields': ['title', 'workflow_state', 'posting_date'], 'field_purposes': {'workflow_state': 'lifecycle_state', 'posting_date': 'posting_date', 'feed_date': 'schedule_marker', 'feed_status': 'status_flag'}, 'search_fields': ['title', 'reference_no', 'description', 'feed_code', 'marketplace_account', 'source_inventory_reference'], 'list_columns': ['title', 'reference_no', 'posting_date', 'workflow_state'], 'initial_state': 'created', 'lifecycle_states': ['created', 'transmitted', 'accepted', 'failed', 'archived'], 'terminal_states': ['archived'], 'action_targets': {'record': None, 'transmit': None, 'review': None, 'archive': 'archived'}}
+CONTRACT = {'title_field': 'title', 'status_field': 'workflow_state', 'reference_field': 'reference_no', 'required_fields': ['title', 'workflow_state', 'posting_date'], 'field_purposes': {'workflow_state': 'lifecycle_state', 'posting_date': 'posting_date', 'feed_date': 'schedule_marker', 'feed_status': 'status_flag', 'related_listing_binding': 'relation_collection', 'related_marketplace_fulfillment_order': 'relation_collection', 'related_inventory_balance': 'relation_collection'}, 'search_fields': ['title', 'reference_no', 'description', 'feed_code', 'marketplace_account', 'source_inventory_reference'], 'list_columns': ['title', 'reference_no', 'posting_date', 'workflow_state'], 'initial_state': 'created', 'lifecycle_states': ['created', 'transmitted', 'accepted', 'failed', 'archived'], 'terminal_states': ['archived'], 'action_targets': {'record': None, 'transmit': None, 'review': None, 'archive': 'archived'}}
 
-WORKFLOW_HINTS = {}
+WORKFLOW_HINTS = {'relation_context': {'related_docs': ['marketplace_account', 'listing_binding', 'marketplace_fulfillment_order', 'inventory_balance'], 'borrowed_fields': ['listing', 'inventory context from linked docs'], 'inferred_roles': ['account owner', 'operations coordinator']}, 'actors': ['account owner', 'operations coordinator'], 'action_actors': {'record': ['account owner'], 'review': ['operations coordinator'], 'archive': ['account owner']}}
+
+SIDE_EFFECT_HINTS = {'downstream_effects': [], 'related_docs': ['marketplace_account', 'listing_binding', 'marketplace_fulfillment_order', 'inventory_balance'], 'action_targets': {'record': None, 'transmit': None, 'review': None, 'archive': 'archived'}, 'action_side_effects_file': 'side_effects.json'}
 
 class DomainService:
     doc_id = "marketplace_inventory_feed"
@@ -63,12 +65,28 @@ class DomainService:
     def after_update(self, instance, serialized_data: dict, context: dict | None = None) -> dict:
         return serialized_data
 
+    def after_action(
+        self,
+        instance,
+        action_id: str,
+        payload: dict,
+        action_result: dict,
+        context: dict | None = None,
+    ) -> dict:
+        return {
+            "updates": {},
+            "side_effects": [],
+        }
+
     def shape_retrieve_data(self, instance, serialized_data: dict, context: dict | None = None) -> dict:
         serialized_data.setdefault("_business_capabilities", self.business_capabilities())
         return serialized_data
 
     def workflow_objective(self) -> str | None:
         return WORKFLOW_HINTS.get("business_objective")
+
+    def side_effect_hints(self) -> dict:
+        return SIDE_EFFECT_HINTS
 
     def business_capabilities(self) -> dict:
         return {

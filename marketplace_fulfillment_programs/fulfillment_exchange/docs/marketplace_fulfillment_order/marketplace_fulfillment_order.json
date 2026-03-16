@@ -71,7 +71,10 @@
         "external_reference"
       ],
       "relations": [
-        "marketplace_account"
+        "marketplace_account",
+        "related_marketplace_inventory_feed",
+        "related_marketplace_return_case",
+        "related_external_fulfillment_order"
       ],
       "amounts": [
         "currency",
@@ -466,6 +469,78 @@
           "filterable": true,
           "sortable": true
         }
+      },
+      {
+        "field_id": "related_marketplace_inventory_feed",
+        "label": "Related Marketplace Inventory Feed",
+        "type": "Table MultiSelect",
+        "required": false,
+        "read_only": false,
+        "default": null,
+        "unique": false,
+        "options": null,
+        "purpose": "relation_collection",
+        "linked_doc": "marketplace_inventory_feed",
+        "depends_on": null,
+        "mandatory_depends_on": null,
+        "read_only_depends_on": null,
+        "fetch_from": null,
+        "allow_on_submit": false,
+        "indexed": false,
+        "ui": {
+          "visible": false,
+          "list_visible": false,
+          "filterable": false,
+          "sortable": false
+        }
+      },
+      {
+        "field_id": "related_marketplace_return_case",
+        "label": "Related Marketplace Return Case",
+        "type": "Table MultiSelect",
+        "required": false,
+        "read_only": false,
+        "default": null,
+        "unique": false,
+        "options": null,
+        "purpose": "relation_collection",
+        "linked_doc": "marketplace_return_case",
+        "depends_on": null,
+        "mandatory_depends_on": null,
+        "read_only_depends_on": null,
+        "fetch_from": null,
+        "allow_on_submit": false,
+        "indexed": false,
+        "ui": {
+          "visible": false,
+          "list_visible": false,
+          "filterable": false,
+          "sortable": false
+        }
+      },
+      {
+        "field_id": "related_external_fulfillment_order",
+        "label": "Related External Fulfillment Order",
+        "type": "Table MultiSelect",
+        "required": false,
+        "read_only": false,
+        "default": null,
+        "unique": false,
+        "options": null,
+        "purpose": "relation_collection",
+        "linked_doc": "external_fulfillment_order",
+        "depends_on": null,
+        "mandatory_depends_on": null,
+        "read_only_depends_on": null,
+        "fetch_from": null,
+        "allow_on_submit": false,
+        "indexed": false,
+        "ui": {
+          "visible": false,
+          "list_visible": false,
+          "filterable": false,
+          "sortable": false
+        }
       }
     ],
     "title_field": "title",
@@ -588,17 +663,39 @@
       {
         "role_id": "System Manager",
         "actions": [
-          "create",
-          "update",
           "view",
           "list",
-          "record",
-          "review",
-          "assign",
-          "track",
-          "monitor",
-          "confirm",
+          "create",
+          "transmit",
+          "accept",
+          "fulfill",
+          "flag_exception",
+          "close",
           "archive"
+        ]
+      },
+      {
+        "role_id": "account owner",
+        "actions": [
+          "view",
+          "list",
+          "create",
+          "close",
+          "archive"
+        ]
+      },
+      {
+        "role_id": "operations coordinator",
+        "actions": [
+          "view",
+          "list"
+        ]
+      },
+      {
+        "role_id": "case owner",
+        "actions": [
+          "view",
+          "list"
         ]
       }
     ],
@@ -687,7 +784,26 @@
         "show_in_related_panel": true
       }
     ],
-    "lookup_rules": [],
+    "lookup_rules": [
+      {
+        "field_id": "related_marketplace_inventory_feed",
+        "doc_id": "marketplace_inventory_feed",
+        "lookup_mode": "multiple",
+        "purpose": "relation_collection"
+      },
+      {
+        "field_id": "related_marketplace_return_case",
+        "doc_id": "marketplace_return_case",
+        "lookup_mode": "multiple",
+        "purpose": "relation_collection"
+      },
+      {
+        "field_id": "related_external_fulfillment_order",
+        "doc_id": "external_fulfillment_order",
+        "lookup_mode": "multiple",
+        "purpose": "relation_collection"
+      }
+    ],
     "fetch_rules": [],
     "reference_map": {
       "primary_reference_field": "reference_no",
@@ -695,7 +811,11 @@
     },
     "relation_rules": {
       "parent_doc": null,
-      "child_docs": [],
+      "child_docs": [
+        "marketplace_inventory_feed",
+        "marketplace_return_case",
+        "external_fulfillment_order"
+      ],
       "show_related_panel": true
     },
     "borrowed_fields": [
@@ -716,7 +836,42 @@
     "runtime_hints": {
       "doc_key": "marketplace_fulfillment_order",
       "supports_related_lookup": true,
-      "supports_fetch_rules": true
+      "supports_fetch_rules": true,
+      "workflow_hints": {
+        "relation_context": {
+          "related_docs": [
+            "marketplace_account",
+            "marketplace_inventory_feed",
+            "marketplace_return_case",
+            "external_fulfillment_order"
+          ],
+          "borrowed_fields": [
+            "order/account context from linked marketplace or operations docs"
+          ],
+          "inferred_roles": [
+            "account owner",
+            "operations coordinator",
+            "case owner"
+          ]
+        },
+        "actors": [
+          "account owner",
+          "operations coordinator",
+          "case owner"
+        ],
+        "action_actors": {
+          "create": [
+            "account owner"
+          ],
+          "close": [
+            "account owner"
+          ],
+          "archive": [
+            "account owner"
+          ]
+        }
+      },
+      "action_side_effects_file": "side_effects.json"
     }
   },
   "classification": {
@@ -796,6 +951,9 @@
       "reports": "reports/service.py",
       "integrations": "integrations/service.py"
     },
+    "runtime_contract": {
+      "side_effects_file": "side_effects.json"
+    },
     "action_handlers": {
       "base_dir": "actions",
       "registry": "actions/registry.py",
@@ -815,6 +973,39 @@
       "doc_kind": "transaction"
     }
   },
+  "testing": {
+    "seeded": true,
+    "api_base_path": "/apis/marketplace_participation_ecosystem/marketplace_fulfillment_programs/fulfillment_exchange/marketplace_fulfillment_order/",
+    "status_field": "workflow_state",
+    "initial_state": "draft",
+    "required_fields": [
+      "title",
+      "workflow_state",
+      "transaction_date"
+    ],
+    "transition_scenarios": [
+      {
+        "action_id": "close",
+        "source_state": "draft",
+        "target_state": "closed",
+        "disallowed_state": "closed"
+      },
+      {
+        "action_id": "archive",
+        "source_state": "draft",
+        "target_state": "archived",
+        "disallowed_state": "closed"
+      }
+    ],
+    "related_docs": [
+      "marketplace_account",
+      "marketplace_inventory_feed",
+      "marketplace_return_case",
+      "external_fulfillment_order"
+    ],
+    "downstream_effects": [],
+    "action_side_effects_file": "side_effects.json"
+  },
   "runtime": {
     "source_of_truth": "doc_folder",
     "generated_from": [
@@ -822,7 +1013,8 @@
       "schema.json",
       "actions.json",
       "settings.json",
-      "logic_seed.json"
+      "logic_seed.json",
+      "side_effects.json"
     ],
     "generator": "plug.apps.doc.file_handler"
   }

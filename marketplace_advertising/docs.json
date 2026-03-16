@@ -1,7 +1,7 @@
 {
   "docs": [
+    "campaign_performance_snapshot",
     "marketplace_campaign",
-    "sponsored_listing_record",
-    "campaign_performance_snapshot"
+    "sponsored_listing_record"
   ]
 }

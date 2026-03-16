@@ -67,7 +67,11 @@
       "workflow_state"
     ],
     "field_purposes": {
-      "workflow_state": "lifecycle_state"
+      "workflow_state": "lifecycle_state",
+      "related_marketplace_fulfillment_order": "relation_collection",
+      "related_listing_binding": "relation_collection",
+      "related_refund_case": "relation_collection",
+      "related_delivery_exception_case": "relation_collection"
     },
     "search_fields": [
       "title",
@@ -109,7 +113,51 @@
       "archive": "archived"
     }
   },
-  "workflow_hints": {},
+  "workflow_hints": {
+    "relation_context": {
+      "related_docs": [
+        "marketplace_fulfillment_order",
+        "listing_binding",
+        "refund_case",
+        "delivery_exception_case"
+      ],
+      "borrowed_fields": [
+        "source order/listing context from linked docs"
+      ],
+      "inferred_roles": [
+        "account owner",
+        "operations coordinator",
+        "case owner"
+      ]
+    },
+    "actors": [
+      "account owner",
+      "operations coordinator",
+      "case owner"
+    ],
+    "action_actors": {
+      "create": [
+        "account owner"
+      ],
+      "review": [
+        "operations coordinator"
+      ],
+      "approve": [
+        "operations coordinator"
+      ],
+      "reject": [
+        "operations coordinator"
+      ],
+      "close": [
+        "account owner"
+      ],
+      "archive": [
+        "account owner"
+      ]
+    }
+  },
+  "downstream_effects": [],
+  "action_side_effects_file": "side_effects.json",
   "related_docs": [
     "marketplace_fulfillment_order",
     "listing_binding",

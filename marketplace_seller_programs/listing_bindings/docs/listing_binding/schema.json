@@ -365,6 +365,78 @@
         "filterable": true,
         "sortable": true
       }
+    },
+    {
+      "field_id": "related_marketplace_fulfillment_order",
+      "label": "Related Marketplace Fulfillment Order",
+      "type": "Table MultiSelect",
+      "required": false,
+      "read_only": false,
+      "default": null,
+      "unique": false,
+      "options": null,
+      "purpose": "relation_collection",
+      "linked_doc": "marketplace_fulfillment_order",
+      "depends_on": null,
+      "mandatory_depends_on": null,
+      "read_only_depends_on": null,
+      "fetch_from": null,
+      "allow_on_submit": false,
+      "indexed": false,
+      "ui": {
+        "visible": false,
+        "list_visible": false,
+        "filterable": false,
+        "sortable": false
+      }
+    },
+    {
+      "field_id": "related_sponsored_listing_record",
+      "label": "Related Sponsored Listing Record",
+      "type": "Table MultiSelect",
+      "required": false,
+      "read_only": false,
+      "default": null,
+      "unique": false,
+      "options": null,
+      "purpose": "relation_collection",
+      "linked_doc": "sponsored_listing_record",
+      "depends_on": null,
+      "mandatory_depends_on": null,
+      "read_only_depends_on": null,
+      "fetch_from": null,
+      "allow_on_submit": false,
+      "indexed": false,
+      "ui": {
+        "visible": false,
+        "list_visible": false,
+        "filterable": false,
+        "sortable": false
+      }
+    },
+    {
+      "field_id": "related_catalog_product",
+      "label": "Related Catalog Product",
+      "type": "Table MultiSelect",
+      "required": false,
+      "read_only": false,
+      "default": null,
+      "unique": false,
+      "options": null,
+      "purpose": "relation_collection",
+      "linked_doc": "catalog_product",
+      "depends_on": null,
+      "mandatory_depends_on": null,
+      "read_only_depends_on": null,
+      "fetch_from": null,
+      "allow_on_submit": false,
+      "indexed": false,
+      "ui": {
+        "visible": false,
+        "list_visible": false,
+        "filterable": false,
+        "sortable": false
+      }
     }
   ],
   "field_groups": {
@@ -388,7 +460,10 @@
       "synchronization_state"
     ],
     "relations": [
-      "marketplace_account"
+      "marketplace_account",
+      "related_marketplace_fulfillment_order",
+      "related_sponsored_listing_record",
+      "related_catalog_product"
     ],
     "amounts": [
       "currency",
@@ -496,16 +571,23 @@
     {
       "role_id": "System Manager",
       "actions": [
-        "create",
-        "update",
         "view",
         "list",
-        "record",
-        "review",
-        "assign",
-        "track",
-        "monitor",
-        "confirm",
+        "create",
+        "sync",
+        "activate",
+        "suspend",
+        "delist",
+        "archive"
+      ]
+    },
+    {
+      "role_id": "account owner",
+      "actions": [
+        "view",
+        "list",
+        "create",
+        "activate",
         "archive"
       ]
     }

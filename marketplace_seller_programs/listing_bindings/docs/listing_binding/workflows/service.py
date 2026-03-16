@@ -11,7 +11,7 @@ TERMINAL_STATES = ['archived']
 ACTION_RULES = {'create': {'allowed_in_states': ['draft', 'active', 'suspended', 'delisted'], 'transitions_to': None}, 'sync': {'allowed_in_states': ['draft', 'active', 'suspended', 'delisted'], 'transitions_to': None}, 'activate': {'allowed_in_states': ['draft'], 'transitions_to': 'active'}, 'suspend': {'allowed_in_states': ['draft', 'active', 'suspended', 'delisted'], 'transitions_to': None}, 'delist': {'allowed_in_states': ['draft', 'active', 'suspended', 'delisted'], 'transitions_to': None}, 'archive': {'allowed_in_states': ['draft', 'active', 'suspended', 'delisted'], 'transitions_to': 'archived'}}
 
 STATE_FIELD = 'workflow_state'
-WORKFLOW_HINTS = {}
+WORKFLOW_HINTS = {'relation_context': {'related_docs': ['marketplace_account', 'marketplace_fulfillment_order', 'sponsored_listing_record', 'catalog_product'], 'borrowed_fields': ['product', 'catalog context from operations/platform product docs'], 'inferred_roles': ['account owner']}, 'actors': ['account owner'], 'action_actors': {'create': ['account owner'], 'activate': ['account owner'], 'archive': ['account owner']}}
 
 class WorkflowService:
     def allowed_actions_for_state(self, state: str | None) -> list[str]:

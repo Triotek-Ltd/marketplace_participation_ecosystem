@@ -60,7 +60,10 @@
       "workflow_state": "lifecycle_state",
       "posting_date": "posting_date",
       "feed_date": "schedule_marker",
-      "feed_status": "status_flag"
+      "feed_status": "status_flag",
+      "related_listing_binding": "relation_collection",
+      "related_marketplace_fulfillment_order": "relation_collection",
+      "related_inventory_balance": "relation_collection"
     },
     "search_fields": [
       "title",
@@ -94,7 +97,41 @@
       "archive": "archived"
     }
   },
-  "workflow_hints": {},
+  "workflow_hints": {
+    "relation_context": {
+      "related_docs": [
+        "marketplace_account",
+        "listing_binding",
+        "marketplace_fulfillment_order",
+        "inventory_balance"
+      ],
+      "borrowed_fields": [
+        "listing",
+        "inventory context from linked docs"
+      ],
+      "inferred_roles": [
+        "account owner",
+        "operations coordinator"
+      ]
+    },
+    "actors": [
+      "account owner",
+      "operations coordinator"
+    ],
+    "action_actors": {
+      "record": [
+        "account owner"
+      ],
+      "review": [
+        "operations coordinator"
+      ],
+      "archive": [
+        "account owner"
+      ]
+    }
+  },
+  "downstream_effects": [],
+  "action_side_effects_file": "side_effects.json",
   "related_docs": [
     "marketplace_account",
     "listing_binding",

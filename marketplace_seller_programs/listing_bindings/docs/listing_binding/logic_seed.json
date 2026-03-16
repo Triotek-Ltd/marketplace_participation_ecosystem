@@ -64,7 +64,10 @@
       "party": "primary_party",
       "currency": "currency_code",
       "total_amount": "total_amount",
-      "listing_status": "status_flag"
+      "listing_status": "status_flag",
+      "related_marketplace_fulfillment_order": "relation_collection",
+      "related_sponsored_listing_record": "relation_collection",
+      "related_catalog_product": "relation_collection"
     },
     "search_fields": [
       "title",
@@ -102,7 +105,39 @@
       "archive": "archived"
     }
   },
-  "workflow_hints": {},
+  "workflow_hints": {
+    "relation_context": {
+      "related_docs": [
+        "marketplace_account",
+        "marketplace_fulfillment_order",
+        "sponsored_listing_record",
+        "catalog_product"
+      ],
+      "borrowed_fields": [
+        "product",
+        "catalog context from operations/platform product docs"
+      ],
+      "inferred_roles": [
+        "account owner"
+      ]
+    },
+    "actors": [
+      "account owner"
+    ],
+    "action_actors": {
+      "create": [
+        "account owner"
+      ],
+      "activate": [
+        "account owner"
+      ],
+      "archive": [
+        "account owner"
+      ]
+    }
+  },
+  "downstream_effects": [],
+  "action_side_effects_file": "side_effects.json",
   "related_docs": [
     "marketplace_account",
     "marketplace_fulfillment_order",

@@ -11,7 +11,7 @@ TERMINAL_STATES = ['archived']
 ACTION_RULES = {'create': {'allowed_in_states': ['requested', 'approved', 'active', 'suspended'], 'transitions_to': None}, 'activate': {'allowed_in_states': ['requested'], 'transitions_to': 'active'}, 'suspend': {'allowed_in_states': ['requested', 'approved', 'active', 'suspended'], 'transitions_to': None}, 'archive': {'allowed_in_states': ['requested', 'approved', 'active', 'suspended'], 'transitions_to': 'archived'}}
 
 STATE_FIELD = 'workflow_state'
-WORKFLOW_HINTS = {}
+WORKFLOW_HINTS = {'relation_context': {'related_docs': ['seller_onboarding_case', 'listing_binding', 'marketplace_campaign'], 'borrowed_fields': ['marketplace program context from onboarding/config records'], 'inferred_roles': ['case owner']}, 'actors': ['case owner'], 'action_actors': {'create': ['case owner'], 'activate': ['case owner'], 'archive': ['case owner']}}
 
 class WorkflowService:
     def allowed_actions_for_state(self, state: str | None) -> list[str]:

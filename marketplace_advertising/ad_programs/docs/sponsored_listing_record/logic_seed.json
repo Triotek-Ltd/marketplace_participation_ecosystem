@@ -63,7 +63,10 @@
       "party": "primary_party",
       "currency": "currency_code",
       "total_amount": "total_amount",
-      "listing_status": "status_flag"
+      "listing_status": "status_flag",
+      "related_marketplace_campaign": "relation_collection",
+      "related_listing_binding": "relation_collection",
+      "related_campaign_performance_snapshot": "relation_collection"
     },
     "search_fields": [
       "title",
@@ -101,6 +104,8 @@
     }
   },
   "workflow_hints": {},
+  "downstream_effects": [],
+  "action_side_effects_file": "side_effects.json",
   "related_docs": [
     "marketplace_campaign",
     "listing_binding",

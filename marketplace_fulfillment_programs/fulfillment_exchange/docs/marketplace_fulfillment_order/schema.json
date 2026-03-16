@@ -391,6 +391,78 @@
         "filterable": true,
         "sortable": true
       }
+    },
+    {
+      "field_id": "related_marketplace_inventory_feed",
+      "label": "Related Marketplace Inventory Feed",
+      "type": "Table MultiSelect",
+      "required": false,
+      "read_only": false,
+      "default": null,
+      "unique": false,
+      "options": null,
+      "purpose": "relation_collection",
+      "linked_doc": "marketplace_inventory_feed",
+      "depends_on": null,
+      "mandatory_depends_on": null,
+      "read_only_depends_on": null,
+      "fetch_from": null,
+      "allow_on_submit": false,
+      "indexed": false,
+      "ui": {
+        "visible": false,
+        "list_visible": false,
+        "filterable": false,
+        "sortable": false
+      }
+    },
+    {
+      "field_id": "related_marketplace_return_case",
+      "label": "Related Marketplace Return Case",
+      "type": "Table MultiSelect",
+      "required": false,
+      "read_only": false,
+      "default": null,
+      "unique": false,
+      "options": null,
+      "purpose": "relation_collection",
+      "linked_doc": "marketplace_return_case",
+      "depends_on": null,
+      "mandatory_depends_on": null,
+      "read_only_depends_on": null,
+      "fetch_from": null,
+      "allow_on_submit": false,
+      "indexed": false,
+      "ui": {
+        "visible": false,
+        "list_visible": false,
+        "filterable": false,
+        "sortable": false
+      }
+    },
+    {
+      "field_id": "related_external_fulfillment_order",
+      "label": "Related External Fulfillment Order",
+      "type": "Table MultiSelect",
+      "required": false,
+      "read_only": false,
+      "default": null,
+      "unique": false,
+      "options": null,
+      "purpose": "relation_collection",
+      "linked_doc": "external_fulfillment_order",
+      "depends_on": null,
+      "mandatory_depends_on": null,
+      "read_only_depends_on": null,
+      "fetch_from": null,
+      "allow_on_submit": false,
+      "indexed": false,
+      "ui": {
+        "visible": false,
+        "list_visible": false,
+        "filterable": false,
+        "sortable": false
+      }
     }
   ],
   "field_groups": {
@@ -414,7 +486,10 @@
       "external_reference"
     ],
     "relations": [
-      "marketplace_account"
+      "marketplace_account",
+      "related_marketplace_inventory_feed",
+      "related_marketplace_return_case",
+      "related_external_fulfillment_order"
     ],
     "amounts": [
       "currency",
@@ -545,17 +620,39 @@
     {
       "role_id": "System Manager",
       "actions": [
-        "create",
-        "update",
         "view",
         "list",
-        "record",
-        "review",
-        "assign",
-        "track",
-        "monitor",
-        "confirm",
+        "create",
+        "transmit",
+        "accept",
+        "fulfill",
+        "flag_exception",
+        "close",
         "archive"
+      ]
+    },
+    {
+      "role_id": "account owner",
+      "actions": [
+        "view",
+        "list",
+        "create",
+        "close",
+        "archive"
+      ]
+    },
+    {
+      "role_id": "operations coordinator",
+      "actions": [
+        "view",
+        "list"
+      ]
+    },
+    {
+      "role_id": "case owner",
+      "actions": [
+        "view",
+        "list"
       ]
     }
   ],
