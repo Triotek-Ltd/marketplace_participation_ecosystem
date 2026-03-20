@@ -15,6 +15,268 @@
   },
   "doc_key": "listing_binding",
   "doc_title": "Listing Binding",
+  "ui": {
+    "icon_key": "receipt",
+    "accent": "#1f7a8c",
+    "logo_image": null,
+    "cover_image": null,
+    "preferred_views": [
+      "list",
+      "table",
+      "detail",
+      "report"
+    ],
+    "default_density": "comfortable"
+  },
+  "dashboard": {
+    "version": 1,
+    "surface": "doc",
+    "hero": {
+      "variant": "summary_strip",
+      "show_breadcrumb": true,
+      "show_title": true
+    },
+    "navigation": {
+      "primary_children": "records",
+      "flatten_submodules_in_ui": false,
+      "views": [
+        "list",
+        "table",
+        "detail",
+        "report"
+      ]
+    },
+    "blocks": [
+      {
+        "id": "kpis",
+        "type": "kpi_cards",
+        "title": "Listing Binding KPIs",
+        "data_source": {
+          "kind": "db",
+          "entity_scope": "doc",
+          "entity_id": "listing_binding",
+          "metric_family": "overview"
+        }
+      },
+      {
+        "id": "summaries",
+        "type": "summary_cards",
+        "title": "Listing Binding summaries",
+        "data_source": {
+          "kind": "db",
+          "entity_scope": "doc",
+          "entity_id": "listing_binding",
+          "metric_family": "summary"
+        }
+      },
+      {
+        "id": "charts",
+        "type": "chart_group",
+        "title": "Listing Binding charts",
+        "data_source": {
+          "kind": "db",
+          "entity_scope": "doc",
+          "entity_id": "listing_binding",
+          "metric_family": "trend"
+        }
+      },
+      {
+        "id": "reports",
+        "type": "report_links",
+        "title": "Listing Binding reports",
+        "data_source": {
+          "kind": "db",
+          "entity_scope": "doc",
+          "entity_id": "listing_binding",
+          "metric_family": "reporting"
+        }
+      },
+      {
+        "id": "records",
+        "type": "record_table",
+        "title": "Listing Binding records",
+        "data_source": {
+          "kind": "db",
+          "entity_scope": "doc",
+          "entity_id": "listing_binding",
+          "metric_family": "records"
+        }
+      }
+    ]
+  },
+  "reporting": {
+    "supports_kpis": true,
+    "supports_summaries": true,
+    "supports_charts": true,
+    "supports_reports": true,
+    "default_time_grain": "month",
+    "default_comparison": "previous_period",
+    "default_currency_mode": "base_currency",
+    "metric_sources": [
+      {
+        "id": "overview",
+        "kind": "db",
+        "entity_scope": "doc",
+        "entity_id": "listing_binding",
+        "metric_family": "overview"
+      },
+      {
+        "id": "summary",
+        "kind": "db",
+        "entity_scope": "doc",
+        "entity_id": "listing_binding",
+        "metric_family": "summary"
+      },
+      {
+        "id": "trend",
+        "kind": "db",
+        "entity_scope": "doc",
+        "entity_id": "listing_binding",
+        "metric_family": "trend"
+      },
+      {
+        "id": "reporting",
+        "kind": "db",
+        "entity_scope": "doc",
+        "entity_id": "listing_binding",
+        "metric_family": "reporting"
+      }
+    ],
+    "report_registry": [
+      {
+        "id": "overview_report",
+        "label": "Listing Binding Overview",
+        "report_type": "dashboard_summary",
+        "surface": "doc"
+      },
+      {
+        "id": "trend_report",
+        "label": "Listing Binding Trends",
+        "report_type": "trend_analysis",
+        "surface": "doc"
+      },
+      {
+        "id": "summary_report",
+        "label": "Listing Binding Summary",
+        "report_type": "summary_report",
+        "surface": "doc"
+      },
+      {
+        "id": "detail_report",
+        "label": "Listing Binding Detail",
+        "report_type": "detail_report",
+        "surface": "doc"
+      }
+    ],
+    "supports_outputs": true,
+    "supports_print_formats": true,
+    "default_views": [
+      "summary",
+      "trend",
+      "report_table"
+    ],
+    "chart_library": {
+      "renderer": "recharts",
+      "recommended_package": "recharts",
+      "source": "https://recharts.org/en-US"
+    },
+    "chart_registry": [
+      {
+        "id": "listing_binding_trend_line",
+        "label": "Listing Binding trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "listing_binding_volume_column",
+        "label": "Listing Binding volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "listing_binding_distribution_donut",
+        "label": "Listing Binding distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      }
+    ]
+  },
+  "flow": {
+    "related_docs": [
+      "marketplace_account",
+      "marketplace_fulfillment_order",
+      "sponsored_listing_record",
+      "catalog_product",
+      "retention_policy"
+    ],
+    "upstream_docs": [
+      "marketplace_account",
+      "marketplace_fulfillment_order",
+      "sponsored_listing_record",
+      "catalog_product"
+    ],
+    "downstream_docs": [
+      "sponsored_listing_record"
+    ],
+    "borrowed_fields": [
+      "product",
+      "catalog context from operations/platform product docs"
+    ],
+    "emits_records": [
+      {
+        "action_id": "activate",
+        "target_doc": "sponsored_listing_record",
+        "effect_type": "create_record"
+      }
+    ],
+    "downstream_effects": [],
+    "actors": [
+      "account owner"
+    ],
+    "handoff_targets": [
+      "marketplace_account",
+      "marketplace_fulfillment_order",
+      "sponsored_listing_record",
+      "catalog_product"
+    ],
+    "graph_edges": [
+      {
+        "source_doc": "listing_binding",
+        "target_doc": "marketplace_account",
+        "relation": "references"
+      },
+      {
+        "source_doc": "listing_binding",
+        "target_doc": "marketplace_fulfillment_order",
+        "relation": "references"
+      },
+      {
+        "source_doc": "listing_binding",
+        "target_doc": "sponsored_listing_record",
+        "relation": "references"
+      },
+      {
+        "source_doc": "listing_binding",
+        "target_doc": "catalog_product",
+        "relation": "references"
+      },
+      {
+        "source_doc": "listing_binding",
+        "target_doc": "sponsored_listing_record",
+        "relation": "create_record",
+        "action_id": "activate"
+      }
+    ]
+  },
   "allowed_actions": [
     "create",
     "sync",
@@ -119,7 +381,7 @@
         "label": "Reference No",
         "type": "Data",
         "required": false,
-        "read_only": false,
+        "read_only": true,
         "default": null,
         "unique": false,
         "options": null,
@@ -228,7 +490,7 @@
         "unique": false,
         "options": null,
         "purpose": "primary_party",
-        "linked_doc": null,
+        "linked_doc": "party_record",
         "depends_on": null,
         "mandatory_depends_on": null,
         "read_only_depends_on": null,
@@ -245,12 +507,39 @@
       {
         "field_id": "currency",
         "label": "Currency",
-        "type": "Data",
+        "type": "Select",
         "required": false,
         "read_only": false,
         "default": null,
         "unique": false,
-        "options": null,
+        "options": {
+          "values": [
+            "USD",
+            "EUR",
+            "GBP",
+            "KES",
+            "UGX",
+            "TZS",
+            "RWF",
+            "NGN",
+            "GHS",
+            "ZAR",
+            "AED",
+            "SAR",
+            "INR",
+            "CNY",
+            "JPY",
+            "CAD",
+            "AUD",
+            "NZD",
+            "CHF",
+            "SEK",
+            "NOK",
+            "DKK",
+            "ZMW",
+            "BWP"
+          ]
+        },
         "purpose": "currency_code",
         "linked_doc": null,
         "depends_on": null,
@@ -295,7 +584,7 @@
         "label": "Binding Code",
         "type": "Data",
         "required": false,
-        "read_only": false,
+        "read_only": true,
         "default": null,
         "unique": false,
         "options": null,
@@ -317,7 +606,7 @@
       {
         "field_id": "marketplace_account",
         "label": "Marketplace Account",
-        "type": "Data",
+        "type": "Link",
         "required": false,
         "read_only": false,
         "default": null,
@@ -463,7 +752,8 @@
           "list_visible": false,
           "filterable": false,
           "sortable": false
-        }
+        },
+        "relation_kind": "explicit"
       },
       {
         "field_id": "related_sponsored_listing_record",
@@ -487,7 +777,8 @@
           "list_visible": false,
           "filterable": false,
           "sortable": false
-        }
+        },
+        "relation_kind": "explicit"
       },
       {
         "field_id": "related_catalog_product",
@@ -511,7 +802,8 @@
           "list_visible": false,
           "filterable": false,
           "sortable": false
-        }
+        },
+        "relation_kind": "explicit"
       }
     ],
     "title_field": "title",
@@ -540,7 +832,12 @@
       "supports_attachments": true,
       "supports_comments": true,
       "supports_activity_log": true,
-      "supports_assignments": true
+      "supports_assignments": true,
+      "is_submittable": false,
+      "supports_submission_snapshot": true,
+      "supports_official_outputs": true,
+      "supports_evidence_pack": true,
+      "supports_signoff": false
     },
     "lifecycle": {
       "initial_state": "draft",
@@ -620,7 +917,9 @@
           "suspend",
           "delist",
           "archive"
-        ]
+        ],
+        "scope": "system",
+        "ownership": "platform"
       },
       {
         "role_id": "account owner",
@@ -628,11 +927,28 @@
           "view",
           "list",
           "create",
+          "update",
           "activate",
           "archive"
-        ]
+        ],
+        "scope": "execution",
+        "ownership": "finance"
       }
     ],
+    "submission_snapshot_policy": {
+      "enabled": true,
+      "trigger_action": "submit",
+      "freeze_fields_after_snapshot": true,
+      "retain_snapshot_history": true,
+      "snapshot_label_template": "{reference_no}-{workflow_state}"
+    },
+    "signature_policy": {
+      "enabled": false,
+      "mode": "approval",
+      "required_roles": [],
+      "reason_required": false,
+      "counter_signature_required": false
+    },
     "transaction_behavior": {
       "is_transactional": true,
       "transaction_kind": "business_transaction",
@@ -645,8 +961,9 @@
         "primary_party_field": "party",
         "counterparty_field": null,
         "party_roles": [
-          "primary_party"
-        ]
+          "party"
+        ],
+        "specific_party_field": null
       },
       "value_model": {
         "currency_field": "currency",
@@ -656,9 +973,13 @@
         "balance_impact": "none"
       },
       "reference_model": {
-        "reference_no_field": "reference_no",
+        "reference_no_field": "binding_code",
         "upstream_links": [],
-        "downstream_links": []
+        "downstream_links": [],
+        "generated_identifier_fields": [
+          "reference_no",
+          "binding_code"
+        ]
       },
       "line_items": {
         "enabled": false,
@@ -666,7 +987,7 @@
         "item_key_field": null,
         "quantity_field": null,
         "rate_field": null,
-        "amount_field": null
+        "amount_field": "total_amount"
       },
       "fulfilment": {
         "enabled": false,
@@ -677,7 +998,67 @@
       "audit": {
         "track_state_history": true,
         "track_action_log": true,
-        "track_external_refs": true
+        "track_external_refs": true,
+        "require_reason_for_change": false,
+        "require_action_comment": false,
+        "hash_official_outputs": false
+      },
+      "records_management": {
+        "retention_policy_ref": "administration.office_administration.filing_records_management.retention_disposal.retention_policy",
+        "legal_hold_enabled": false,
+        "disposition_action": "archive",
+        "immutable_after_submit": true,
+        "official_copy_on_submit": false,
+        "chain_of_custody_required": false,
+        "retention_trigger_field": null,
+        "legal_hold_field": null
+      },
+      "evidence_policy": {
+        "required_attachments": [],
+        "required_references": [],
+        "required_approvals": [],
+        "verification_fields": []
+      },
+      "legal_hold_policy": {
+        "enabled": false,
+        "hold_field": null,
+        "restrict_disposition_while_active": true,
+        "allow_override_roles": []
+      },
+      "official_copy_policy": {
+        "enabled": true,
+        "format": "pdf",
+        "generate_on_submit": false,
+        "hash_outputs": false,
+        "include_audit_summary": true,
+        "include_attachments_index": true
+      },
+      "chain_of_custody_policy": {
+        "enabled": false,
+        "custody_event_field": null,
+        "require_transfer_reason": false,
+        "require_actor_identity": true
+      },
+      "settlement": {
+        "enabled": false,
+        "source_fields": [],
+        "target_doc_types": [],
+        "allocation_field": null,
+        "requires_reference_selection": false
+      },
+      "actor_validation": {
+        "enabled": false,
+        "required_events": [],
+        "verification_fields": [],
+        "signature_required_on": [],
+        "counterparty_confirmation_required": false
+      },
+      "external_reference_model": {
+        "enabled": false,
+        "primary_source_reference_field": null,
+        "source_reference_fields": [],
+        "reference_kinds": [],
+        "allow_multiple": false
       }
     }
   },
@@ -694,7 +1075,176 @@
         "workflow_state"
       ],
       "default_filters": [],
-      "quick_entry": false
+      "quick_entry": false,
+      "form_layout": {
+        "version": 1,
+        "tabs": [
+          {
+            "id": "overview",
+            "label": "Overview",
+            "sections": [
+              {
+                "id": "identity",
+                "label": "Identity",
+                "columns": [
+                  {
+                    "id": "identity_column_1",
+                    "label": "",
+                    "width": 6,
+                    "fieldIds": [
+                      "title"
+                    ]
+                  },
+                  {
+                    "id": "identity_column_2",
+                    "label": "",
+                    "width": 6,
+                    "fieldIds": [
+                      "reference_no"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "parties",
+                "label": "Parties",
+                "columns": [
+                  {
+                    "id": "parties_column_1",
+                    "label": "",
+                    "width": 12,
+                    "fieldIds": [
+                      "party"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "dates",
+                "label": "Dates",
+                "columns": [
+                  {
+                    "id": "dates_column_1",
+                    "label": "",
+                    "width": 12,
+                    "fieldIds": [
+                      "transaction_date"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "status",
+                "label": "Workflow",
+                "columns": [
+                  {
+                    "id": "status_column_1",
+                    "label": "",
+                    "width": 6,
+                    "fieldIds": [
+                      "workflow_state"
+                    ]
+                  },
+                  {
+                    "id": "status_column_2",
+                    "label": "",
+                    "width": 6,
+                    "fieldIds": [
+                      "listing_status"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "details",
+            "label": "Details",
+            "sections": [
+              {
+                "id": "content",
+                "label": "Details",
+                "columns": [
+                  {
+                    "id": "content_column_1",
+                    "label": "",
+                    "width": 6,
+                    "fieldIds": [
+                      "binding_code",
+                      "external_listing_reference"
+                    ]
+                  },
+                  {
+                    "id": "content_column_2",
+                    "label": "",
+                    "width": 6,
+                    "fieldIds": [
+                      "source_product_reference",
+                      "synchronization_state"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "content_details",
+                "label": "Description",
+                "columns": [
+                  {
+                    "id": "content_details_column_1",
+                    "label": "",
+                    "width": 12,
+                    "fieldIds": [
+                      "description"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "amounts",
+                "label": "Amounts",
+                "columns": [
+                  {
+                    "id": "amounts_column_1",
+                    "label": "",
+                    "width": 6,
+                    "fieldIds": [
+                      "currency"
+                    ]
+                  },
+                  {
+                    "id": "amounts_column_2",
+                    "label": "",
+                    "width": 6,
+                    "fieldIds": [
+                      "total_amount"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "related",
+            "label": "Related",
+            "sections": [
+              {
+                "id": "relations",
+                "label": "Related Records",
+                "columns": [
+                  {
+                    "id": "relations_column_1",
+                    "label": "",
+                    "width": 12,
+                    "fieldIds": [
+                      "marketplace_account"
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
     },
     "related_docs": [
       {
@@ -714,6 +1264,11 @@
       },
       {
         "doc_id": "catalog_product",
+        "relation_type": "related",
+        "show_in_related_panel": true
+      },
+      {
+        "doc_id": "party_record",
         "relation_type": "related",
         "show_in_related_panel": true
       }
@@ -736,9 +1291,32 @@
         "doc_id": "catalog_product",
         "lookup_mode": "multiple",
         "purpose": "relation_collection"
+      },
+      {
+        "field_id": "party",
+        "doc_id": "party_record",
+        "lookup_mode": "single",
+        "purpose": "primary_party"
+      },
+      {
+        "field_id": "marketplace_account",
+        "doc_id": "marketplace_account",
+        "lookup_mode": "single",
+        "purpose": "relation"
       }
     ],
-    "fetch_rules": [],
+    "fetch_rules": [
+      {
+        "source_field": "party",
+        "doc_id": "party_record",
+        "mode": "context"
+      },
+      {
+        "source_field": "related_marketplace_fulfillment_order",
+        "doc_id": "marketplace_fulfillment_order",
+        "mode": "context"
+      }
+    ],
     "reference_map": {
       "primary_reference_field": "reference_no",
       "reference_labels": []
@@ -746,6 +1324,8 @@
     "relation_rules": {
       "parent_doc": null,
       "child_docs": [
+        "party_record",
+        "marketplace_account",
         "marketplace_fulfillment_order",
         "sponsored_listing_record",
         "catalog_product"
@@ -758,13 +1338,27 @@
       },
       {
         "description": "catalog context from operations/platform product docs"
+      },
+      {
+        "field_id": "party",
+        "doc_id": "party_record",
+        "description": "Borrow context from party_record through party."
+      },
+      {
+        "field_id": "related_marketplace_fulfillment_order",
+        "doc_id": "marketplace_fulfillment_order",
+        "description": "Borrow context from marketplace_fulfillment_order through related_marketplace_fulfillment_order."
       }
     ],
     "ui_panels": {
       "show_activity_log": true,
       "show_comments": true,
       "show_assignments": true,
-      "show_related_docs": true
+      "show_related_docs": true,
+      "show_kpis": true,
+      "show_summaries": true,
+      "show_charts": true,
+      "show_reports": true
     },
     "integration": {
       "external_refs": [],
@@ -805,7 +1399,21 @@
           ]
         }
       },
-      "action_side_effects_file": "side_effects.json"
+      "action_side_effects_file": "side_effects.json",
+      "supports_official_copy": true,
+      "supports_evidence_timeline": true,
+      "supports_chain_of_custody": false
+    },
+    "dashboard": {
+      "metric_blocks": [
+        "kpis",
+        "summaries",
+        "charts",
+        "reports",
+        "records"
+      ],
+      "default_view": "list",
+      "reporting_surface": "doc"
     }
   },
   "classification": {
@@ -827,8 +1435,9 @@
         "primary_party_field": "party",
         "counterparty_field": null,
         "party_roles": [
-          "primary_party"
-        ]
+          "party"
+        ],
+        "specific_party_field": null
       },
       "value_model": {
         "currency_field": "currency",
@@ -838,9 +1447,13 @@
         "balance_impact": "none"
       },
       "reference_model": {
-        "reference_no_field": "reference_no",
+        "reference_no_field": "binding_code",
         "upstream_links": [],
-        "downstream_links": []
+        "downstream_links": [],
+        "generated_identifier_fields": [
+          "reference_no",
+          "binding_code"
+        ]
       },
       "line_items": {
         "enabled": false,
@@ -848,7 +1461,7 @@
         "item_key_field": null,
         "quantity_field": null,
         "rate_field": null,
-        "amount_field": null
+        "amount_field": "total_amount"
       },
       "fulfilment": {
         "enabled": false,
@@ -859,12 +1472,97 @@
       "audit": {
         "track_state_history": true,
         "track_action_log": true,
-        "track_external_refs": true
+        "track_external_refs": true,
+        "require_reason_for_change": false,
+        "require_action_comment": false,
+        "hash_official_outputs": false
+      },
+      "records_management": {
+        "retention_policy_ref": "administration.office_administration.filing_records_management.retention_disposal.retention_policy",
+        "legal_hold_enabled": false,
+        "disposition_action": "archive",
+        "immutable_after_submit": true,
+        "official_copy_on_submit": false,
+        "chain_of_custody_required": false,
+        "retention_trigger_field": null,
+        "legal_hold_field": null
+      },
+      "evidence_policy": {
+        "required_attachments": [],
+        "required_references": [],
+        "required_approvals": [],
+        "verification_fields": []
+      },
+      "legal_hold_policy": {
+        "enabled": false,
+        "hold_field": null,
+        "restrict_disposition_while_active": true,
+        "allow_override_roles": []
+      },
+      "official_copy_policy": {
+        "enabled": true,
+        "format": "pdf",
+        "generate_on_submit": false,
+        "hash_outputs": false,
+        "include_audit_summary": true,
+        "include_attachments_index": true
+      },
+      "chain_of_custody_policy": {
+        "enabled": false,
+        "custody_event_field": null,
+        "require_transfer_reason": false,
+        "require_actor_identity": true
+      },
+      "settlement": {
+        "enabled": false,
+        "source_fields": [],
+        "target_doc_types": [],
+        "allocation_field": null,
+        "requires_reference_selection": false
+      },
+      "actor_validation": {
+        "enabled": false,
+        "required_events": [],
+        "verification_fields": [],
+        "signature_required_on": [],
+        "counterparty_confirmation_required": false
+      },
+      "external_reference_model": {
+        "enabled": false,
+        "primary_source_reference_field": null,
+        "source_reference_fields": [],
+        "reference_kinds": [],
+        "allow_multiple": false
       }
     },
+    "submission_snapshot_policy": {
+      "enabled": true,
+      "trigger_action": "submit",
+      "freeze_fields_after_snapshot": true,
+      "retain_snapshot_history": true,
+      "snapshot_label_template": "{reference_no}-{workflow_state}"
+    },
+    "signature_policy": {
+      "enabled": false,
+      "mode": "approval",
+      "required_roles": [],
+      "reason_required": false,
+      "counter_signature_required": false
+    },
+    "records_profile": {
+      "record_class": "business_record",
+      "legal_significance": "standard",
+      "confidentiality": "internal",
+      "official_copy_format": "pdf",
+      "evidence_gaps": []
+    },
     "report_boundary_classification": "source business doc",
-    "validation_status": "ready",
-    "validation_warnings": []
+    "validation_status": "warning",
+    "validation_warnings": [
+      "helper_relation_field:related_marketplace_fulfillment_order",
+      "helper_relation_field:related_sponsored_listing_record",
+      "helper_relation_field:related_catalog_product"
+    ]
   },
   "business_logic": {
     "seeded": true,
@@ -911,6 +1609,14 @@
     "api_base_path": "/apis/marketplace_participation_ecosystem/marketplace_seller_programs/listing_bindings/listing_binding/",
     "status_field": "workflow_state",
     "initial_state": "draft",
+    "actions": [
+      "create",
+      "sync",
+      "activate",
+      "suspend",
+      "delist",
+      "archive"
+    ],
     "required_fields": [
       "title",
       "workflow_state",
@@ -934,9 +1640,97 @@
       "marketplace_account",
       "marketplace_fulfillment_order",
       "sponsored_listing_record",
-      "catalog_product"
+      "catalog_product",
+      "party_record"
     ],
+    "records_profile": {
+      "record_class": "business_record",
+      "legal_significance": "standard",
+      "confidentiality": "internal",
+      "official_copy_format": "pdf",
+      "evidence_gaps": []
+    },
+    "submission_snapshot_policy": {
+      "enabled": true,
+      "trigger_action": "submit",
+      "freeze_fields_after_snapshot": true,
+      "retain_snapshot_history": true,
+      "snapshot_label_template": "{reference_no}-{workflow_state}"
+    },
+    "signature_policy": {
+      "enabled": false,
+      "mode": "approval",
+      "required_roles": [],
+      "reason_required": false,
+      "counter_signature_required": false
+    },
+    "records_management": {
+      "retention_policy_ref": "administration.office_administration.filing_records_management.retention_disposal.retention_policy",
+      "legal_hold_enabled": false,
+      "disposition_action": "archive",
+      "immutable_after_submit": true,
+      "official_copy_on_submit": false,
+      "chain_of_custody_required": false,
+      "retention_trigger_field": null,
+      "legal_hold_field": null
+    },
+    "legal_hold_policy": {
+      "enabled": false,
+      "hold_field": null,
+      "restrict_disposition_while_active": true,
+      "allow_override_roles": []
+    },
+    "official_copy_policy": {
+      "enabled": true,
+      "format": "pdf",
+      "generate_on_submit": false,
+      "hash_outputs": false,
+      "include_audit_summary": true,
+      "include_attachments_index": true
+    },
+    "evidence_policy": {
+      "required_attachments": [],
+      "required_references": [],
+      "required_approvals": [],
+      "verification_fields": []
+    },
+    "chain_of_custody_policy": {
+      "enabled": false,
+      "custody_event_field": null,
+      "require_transfer_reason": false,
+      "require_actor_identity": true
+    },
     "downstream_effects": [],
+    "role_action_matrix": [
+      {
+        "role_id": "System Manager",
+        "actions": [
+          "view",
+          "list",
+          "create",
+          "sync",
+          "activate",
+          "suspend",
+          "delist",
+          "archive"
+        ],
+        "scope": "system",
+        "ownership": "platform"
+      },
+      {
+        "role_id": "account owner",
+        "actions": [
+          "view",
+          "list",
+          "create",
+          "update",
+          "activate",
+          "archive"
+        ],
+        "scope": "execution",
+        "ownership": "finance"
+      }
+    ],
     "action_side_effects_file": "side_effects.json"
   },
   "runtime": {

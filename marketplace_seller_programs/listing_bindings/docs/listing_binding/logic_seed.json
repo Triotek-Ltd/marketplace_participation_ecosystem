@@ -24,8 +24,8 @@
       "archived"
     ]
   },
-  "related_doc_count": 4,
-  "fetch_rule_count": 0,
+  "related_doc_count": 5,
+  "fetch_rule_count": 2,
   "action_handler_count": 6,
   "archetype_profile": {
     "workflow_profile": {
@@ -96,6 +96,237 @@
     "terminal_states": [
       "archived"
     ],
+    "records_profile": {
+      "record_class": "business_record",
+      "legal_significance": "standard",
+      "confidentiality": "internal",
+      "official_copy_format": "pdf",
+      "evidence_gaps": []
+    },
+    "record_contract": {
+      "doc_kind": "transaction",
+      "supports_attachments": true,
+      "supports_comments": true,
+      "supports_activity_log": true,
+      "supports_assignments": true,
+      "is_submittable": false,
+      "supports_submission_snapshot": true,
+      "supports_official_outputs": true,
+      "supports_evidence_pack": true,
+      "supports_signoff": false
+    },
+    "submission_snapshot_policy": {
+      "enabled": true,
+      "trigger_action": "submit",
+      "freeze_fields_after_snapshot": true,
+      "retain_snapshot_history": true,
+      "snapshot_label_template": "{reference_no}-{workflow_state}",
+      "trigger_actions": [
+        "submit"
+      ]
+    },
+    "signature_policy": {
+      "enabled": false,
+      "mode": "approval",
+      "required_roles": [],
+      "reason_required": false,
+      "counter_signature_required": false
+    },
+    "audit_policy": {
+      "track_state_history": true,
+      "track_action_log": true,
+      "track_external_refs": true,
+      "require_reason_for_change": false,
+      "require_action_comment": false,
+      "hash_official_outputs": false
+    },
+    "records_management": {
+      "retention_policy_ref": "administration.office_administration.filing_records_management.retention_disposal.retention_policy",
+      "legal_hold_enabled": false,
+      "disposition_action": "archive",
+      "immutable_after_submit": true,
+      "official_copy_on_submit": false,
+      "chain_of_custody_required": false,
+      "retention_trigger_field": null,
+      "legal_hold_field": null,
+      "disposition_actions": [
+        "archive"
+      ]
+    },
+    "legal_hold_policy": {
+      "enabled": false,
+      "hold_field": null,
+      "restrict_disposition_while_active": true,
+      "allow_override_roles": []
+    },
+    "official_copy_policy": {
+      "enabled": true,
+      "format": "pdf",
+      "generate_on_submit": false,
+      "hash_outputs": false,
+      "include_audit_summary": true,
+      "include_attachments_index": true,
+      "trigger_actions": []
+    },
+    "evidence_policy": {
+      "required_attachments": [],
+      "required_references": [],
+      "required_approvals": [],
+      "verification_fields": []
+    },
+    "chain_of_custody_policy": {
+      "enabled": false,
+      "custody_event_field": null,
+      "require_transfer_reason": false,
+      "require_actor_identity": true
+    },
+    "display_runtime_hints": {
+      "doc_key": "listing_binding",
+      "supports_related_lookup": true,
+      "supports_fetch_rules": true,
+      "workflow_hints": {
+        "relation_context": {
+          "related_docs": [
+            "marketplace_account",
+            "marketplace_fulfillment_order",
+            "sponsored_listing_record",
+            "catalog_product"
+          ],
+          "borrowed_fields": [
+            "product",
+            "catalog context from operations/platform product docs"
+          ],
+          "inferred_roles": [
+            "account owner"
+          ]
+        },
+        "actors": [
+          "account owner"
+        ],
+        "action_actors": {
+          "create": [
+            "account owner"
+          ],
+          "activate": [
+            "account owner"
+          ],
+          "archive": [
+            "account owner"
+          ]
+        }
+      },
+      "action_side_effects_file": "side_effects.json",
+      "supports_official_copy": true,
+      "supports_evidence_timeline": true,
+      "supports_chain_of_custody": false
+    },
+    "action_contracts": {
+      "create": {
+        "rule": {
+          "allowed_in_states": [
+            "draft",
+            "active",
+            "suspended",
+            "delisted"
+          ],
+          "transitions_to": null
+        },
+        "requires_action_comment": false,
+        "requires_reason_for_change": false,
+        "requires_evidence": false,
+        "is_disposition_action": false,
+        "creates_submission_snapshot": false,
+        "creates_official_copy": false,
+        "requires_signature": false
+      },
+      "sync": {
+        "rule": {
+          "allowed_in_states": [
+            "draft",
+            "active",
+            "suspended",
+            "delisted"
+          ],
+          "transitions_to": null
+        },
+        "requires_action_comment": false,
+        "requires_reason_for_change": false,
+        "requires_evidence": false,
+        "is_disposition_action": false,
+        "creates_submission_snapshot": false,
+        "creates_official_copy": false,
+        "requires_signature": false
+      },
+      "activate": {
+        "rule": {
+          "allowed_in_states": [
+            "draft"
+          ],
+          "transitions_to": "active"
+        },
+        "requires_action_comment": false,
+        "requires_reason_for_change": false,
+        "requires_evidence": false,
+        "is_disposition_action": false,
+        "creates_submission_snapshot": false,
+        "creates_official_copy": false,
+        "requires_signature": false
+      },
+      "suspend": {
+        "rule": {
+          "allowed_in_states": [
+            "draft",
+            "active",
+            "suspended",
+            "delisted"
+          ],
+          "transitions_to": null
+        },
+        "requires_action_comment": false,
+        "requires_reason_for_change": false,
+        "requires_evidence": false,
+        "is_disposition_action": false,
+        "creates_submission_snapshot": false,
+        "creates_official_copy": false,
+        "requires_signature": false
+      },
+      "delist": {
+        "rule": {
+          "allowed_in_states": [
+            "draft",
+            "active",
+            "suspended",
+            "delisted"
+          ],
+          "transitions_to": null
+        },
+        "requires_action_comment": false,
+        "requires_reason_for_change": false,
+        "requires_evidence": false,
+        "is_disposition_action": false,
+        "creates_submission_snapshot": false,
+        "creates_official_copy": false,
+        "requires_signature": false
+      },
+      "archive": {
+        "rule": {
+          "allowed_in_states": [
+            "draft",
+            "active",
+            "suspended",
+            "delisted"
+          ],
+          "transitions_to": "archived"
+        },
+        "requires_action_comment": false,
+        "requires_reason_for_change": false,
+        "requires_evidence": false,
+        "is_disposition_action": true,
+        "creates_submission_snapshot": false,
+        "creates_official_copy": false,
+        "requires_signature": false
+      }
+    },
     "action_targets": {
       "create": null,
       "sync": null,
@@ -137,15 +368,18 @@
     }
   },
   "downstream_effects": [],
-  "action_side_effects_file": "side_effects.json",
+  "action_side_effects_file": null,
   "related_docs": [
     "marketplace_account",
     "marketplace_fulfillment_order",
     "sponsored_listing_record",
-    "catalog_product"
+    "catalog_product",
+    "party_record"
   ],
   "borrowed_fields": [
     "product",
-    "catalog context from operations/platform product docs"
+    "catalog context from operations/platform product docs",
+    "Borrow context from party_record through party.",
+    "Borrow context from marketplace_fulfillment_order through related_marketplace_fulfillment_order."
   ]
 }

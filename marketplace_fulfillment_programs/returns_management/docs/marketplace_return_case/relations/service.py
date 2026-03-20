@@ -7,9 +7,9 @@ from core.services.relation_resolution import RelationResolutionService
 
 DOC_ID = "marketplace_return_case"
 RELATED_DOCS = [{'doc_id': 'marketplace_fulfillment_order', 'relation_type': 'related', 'show_in_related_panel': True}, {'doc_id': 'listing_binding', 'relation_type': 'related', 'show_in_related_panel': True}, {'doc_id': 'refund_case', 'relation_type': 'related', 'show_in_related_panel': True}, {'doc_id': 'delivery_exception_case', 'relation_type': 'related', 'show_in_related_panel': True}]
-FETCH_RULES = []
+FETCH_RULES = [{'source_field': 'related_marketplace_fulfillment_order', 'doc_id': 'marketplace_fulfillment_order', 'mode': 'context'}, {'source_field': 'related_delivery_exception_case', 'doc_id': 'delivery_exception_case', 'mode': 'context'}]
 
-BORROWED_FIELDS = [{'description': 'source order/listing context from linked docs'}]
+BORROWED_FIELDS = [{'description': 'source order/listing context from linked docs'}, {'field_id': 'related_marketplace_fulfillment_order', 'doc_id': 'marketplace_fulfillment_order', 'description': 'Borrow context from marketplace_fulfillment_order through related_marketplace_fulfillment_order.'}, {'field_id': 'related_delivery_exception_case', 'doc_id': 'delivery_exception_case', 'description': 'Borrow context from delivery_exception_case through related_delivery_exception_case.'}]
 
 class RelationService:
     def _bridge(self, context: dict | None = None) -> RelationResolutionService | None:

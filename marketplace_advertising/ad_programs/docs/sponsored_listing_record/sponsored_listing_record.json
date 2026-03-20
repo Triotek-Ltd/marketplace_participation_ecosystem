@@ -15,6 +15,244 @@
   },
   "doc_key": "sponsored_listing_record",
   "doc_title": "Sponsored Listing Record",
+  "ui": {
+    "icon_key": "receipt",
+    "accent": "#1f7a8c",
+    "logo_image": null,
+    "cover_image": null,
+    "preferred_views": [
+      "list",
+      "table",
+      "detail",
+      "report"
+    ],
+    "default_density": "comfortable"
+  },
+  "dashboard": {
+    "version": 1,
+    "surface": "doc",
+    "hero": {
+      "variant": "summary_strip",
+      "show_breadcrumb": true,
+      "show_title": true
+    },
+    "navigation": {
+      "primary_children": "records",
+      "flatten_submodules_in_ui": false,
+      "views": [
+        "list",
+        "table",
+        "detail",
+        "report"
+      ]
+    },
+    "blocks": [
+      {
+        "id": "kpis",
+        "type": "kpi_cards",
+        "title": "Sponsored Listing Record KPIs",
+        "data_source": {
+          "kind": "db",
+          "entity_scope": "doc",
+          "entity_id": "sponsored_listing_record",
+          "metric_family": "overview"
+        }
+      },
+      {
+        "id": "summaries",
+        "type": "summary_cards",
+        "title": "Sponsored Listing Record summaries",
+        "data_source": {
+          "kind": "db",
+          "entity_scope": "doc",
+          "entity_id": "sponsored_listing_record",
+          "metric_family": "summary"
+        }
+      },
+      {
+        "id": "charts",
+        "type": "chart_group",
+        "title": "Sponsored Listing Record charts",
+        "data_source": {
+          "kind": "db",
+          "entity_scope": "doc",
+          "entity_id": "sponsored_listing_record",
+          "metric_family": "trend"
+        }
+      },
+      {
+        "id": "reports",
+        "type": "report_links",
+        "title": "Sponsored Listing Record reports",
+        "data_source": {
+          "kind": "db",
+          "entity_scope": "doc",
+          "entity_id": "sponsored_listing_record",
+          "metric_family": "reporting"
+        }
+      },
+      {
+        "id": "records",
+        "type": "record_table",
+        "title": "Sponsored Listing Record records",
+        "data_source": {
+          "kind": "db",
+          "entity_scope": "doc",
+          "entity_id": "sponsored_listing_record",
+          "metric_family": "records"
+        }
+      }
+    ]
+  },
+  "reporting": {
+    "supports_kpis": true,
+    "supports_summaries": true,
+    "supports_charts": true,
+    "supports_reports": true,
+    "default_time_grain": "month",
+    "default_comparison": "previous_period",
+    "default_currency_mode": "base_currency",
+    "metric_sources": [
+      {
+        "id": "overview",
+        "kind": "db",
+        "entity_scope": "doc",
+        "entity_id": "sponsored_listing_record",
+        "metric_family": "overview"
+      },
+      {
+        "id": "summary",
+        "kind": "db",
+        "entity_scope": "doc",
+        "entity_id": "sponsored_listing_record",
+        "metric_family": "summary"
+      },
+      {
+        "id": "trend",
+        "kind": "db",
+        "entity_scope": "doc",
+        "entity_id": "sponsored_listing_record",
+        "metric_family": "trend"
+      },
+      {
+        "id": "reporting",
+        "kind": "db",
+        "entity_scope": "doc",
+        "entity_id": "sponsored_listing_record",
+        "metric_family": "reporting"
+      }
+    ],
+    "report_registry": [
+      {
+        "id": "overview_report",
+        "label": "Sponsored Listing Record Overview",
+        "report_type": "dashboard_summary",
+        "surface": "doc"
+      },
+      {
+        "id": "trend_report",
+        "label": "Sponsored Listing Record Trends",
+        "report_type": "trend_analysis",
+        "surface": "doc"
+      },
+      {
+        "id": "summary_report",
+        "label": "Sponsored Listing Record Summary",
+        "report_type": "summary_report",
+        "surface": "doc"
+      },
+      {
+        "id": "detail_report",
+        "label": "Sponsored Listing Record Detail",
+        "report_type": "detail_report",
+        "surface": "doc"
+      }
+    ],
+    "supports_outputs": true,
+    "supports_print_formats": true,
+    "default_views": [
+      "summary",
+      "trend",
+      "report_table"
+    ],
+    "chart_library": {
+      "renderer": "recharts",
+      "recommended_package": "recharts",
+      "source": "https://recharts.org/en-US"
+    },
+    "chart_registry": [
+      {
+        "id": "sponsored_listing_record_trend_line",
+        "label": "Sponsored Listing Record trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "sponsored_listing_record_volume_column",
+        "label": "Sponsored Listing Record volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "sponsored_listing_record_distribution_donut",
+        "label": "Sponsored Listing Record distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      }
+    ]
+  },
+  "flow": {
+    "related_docs": [
+      "marketplace_campaign",
+      "listing_binding",
+      "campaign_performance_snapshot",
+      "retention_policy"
+    ],
+    "upstream_docs": [
+      "marketplace_campaign",
+      "listing_binding",
+      "campaign_performance_snapshot"
+    ],
+    "downstream_docs": [],
+    "borrowed_fields": [
+      "listing identity from listing_binding",
+      "campaign context from marketplace_campaign"
+    ],
+    "emits_records": [],
+    "downstream_effects": [],
+    "actors": [],
+    "handoff_targets": [
+      "marketplace_campaign",
+      "listing_binding",
+      "campaign_performance_snapshot"
+    ],
+    "graph_edges": [
+      {
+        "source_doc": "sponsored_listing_record",
+        "target_doc": "marketplace_campaign",
+        "relation": "references"
+      },
+      {
+        "source_doc": "sponsored_listing_record",
+        "target_doc": "listing_binding",
+        "relation": "references"
+      },
+      {
+        "source_doc": "sponsored_listing_record",
+        "target_doc": "campaign_performance_snapshot",
+        "relation": "references"
+      }
+    ]
+  },
   "allowed_actions": [
     "create",
     "activate",
@@ -117,7 +355,7 @@
         "label": "Reference No",
         "type": "Data",
         "required": false,
-        "read_only": false,
+        "read_only": true,
         "default": null,
         "unique": false,
         "options": null,
@@ -226,7 +464,7 @@
         "unique": false,
         "options": null,
         "purpose": "primary_party",
-        "linked_doc": null,
+        "linked_doc": "party_record",
         "depends_on": null,
         "mandatory_depends_on": null,
         "read_only_depends_on": null,
@@ -243,12 +481,39 @@
       {
         "field_id": "currency",
         "label": "Currency",
-        "type": "Data",
+        "type": "Select",
         "required": false,
         "read_only": false,
         "default": null,
         "unique": false,
-        "options": null,
+        "options": {
+          "values": [
+            "USD",
+            "EUR",
+            "GBP",
+            "KES",
+            "UGX",
+            "TZS",
+            "RWF",
+            "NGN",
+            "GHS",
+            "ZAR",
+            "AED",
+            "SAR",
+            "INR",
+            "CNY",
+            "JPY",
+            "CAD",
+            "AUD",
+            "NZD",
+            "CHF",
+            "SEK",
+            "NOK",
+            "DKK",
+            "ZMW",
+            "BWP"
+          ]
+        },
         "purpose": "currency_code",
         "linked_doc": null,
         "depends_on": null,
@@ -293,7 +558,7 @@
         "label": "Sponsored Listing Code",
         "type": "Data",
         "required": false,
-        "read_only": false,
+        "read_only": true,
         "default": null,
         "unique": false,
         "options": null,
@@ -461,7 +726,8 @@
           "list_visible": false,
           "filterable": false,
           "sortable": false
-        }
+        },
+        "relation_kind": "explicit"
       },
       {
         "field_id": "related_listing_binding",
@@ -485,7 +751,8 @@
           "list_visible": false,
           "filterable": false,
           "sortable": false
-        }
+        },
+        "relation_kind": "explicit"
       },
       {
         "field_id": "related_campaign_performance_snapshot",
@@ -509,7 +776,8 @@
           "list_visible": false,
           "filterable": false,
           "sortable": false
-        }
+        },
+        "relation_kind": "explicit"
       }
     ],
     "title_field": "title",
@@ -538,7 +806,12 @@
       "supports_attachments": true,
       "supports_comments": true,
       "supports_activity_log": true,
-      "supports_assignments": true
+      "supports_assignments": true,
+      "is_submittable": false,
+      "supports_submission_snapshot": true,
+      "supports_official_outputs": true,
+      "supports_evidence_pack": true,
+      "supports_signoff": false
     },
     "lifecycle": {
       "initial_state": "draft",
@@ -608,9 +881,25 @@
           "pause",
           "end",
           "archive"
-        ]
+        ],
+        "scope": "system",
+        "ownership": "platform"
       }
     ],
+    "submission_snapshot_policy": {
+      "enabled": true,
+      "trigger_action": "submit",
+      "freeze_fields_after_snapshot": true,
+      "retain_snapshot_history": true,
+      "snapshot_label_template": "{reference_no}-{workflow_state}"
+    },
+    "signature_policy": {
+      "enabled": false,
+      "mode": "approval",
+      "required_roles": [],
+      "reason_required": false,
+      "counter_signature_required": false
+    },
     "transaction_behavior": {
       "is_transactional": true,
       "transaction_kind": "business_transaction",
@@ -623,8 +912,9 @@
         "primary_party_field": "party",
         "counterparty_field": null,
         "party_roles": [
-          "primary_party"
-        ]
+          "party"
+        ],
+        "specific_party_field": null
       },
       "value_model": {
         "currency_field": "currency",
@@ -634,9 +924,13 @@
         "balance_impact": "none"
       },
       "reference_model": {
-        "reference_no_field": "reference_no",
+        "reference_no_field": "sponsored_listing_code",
         "upstream_links": [],
-        "downstream_links": []
+        "downstream_links": [],
+        "generated_identifier_fields": [
+          "reference_no",
+          "sponsored_listing_code"
+        ]
       },
       "line_items": {
         "enabled": false,
@@ -644,7 +938,7 @@
         "item_key_field": null,
         "quantity_field": null,
         "rate_field": null,
-        "amount_field": null
+        "amount_field": "total_amount"
       },
       "fulfilment": {
         "enabled": false,
@@ -655,7 +949,67 @@
       "audit": {
         "track_state_history": true,
         "track_action_log": true,
-        "track_external_refs": true
+        "track_external_refs": true,
+        "require_reason_for_change": false,
+        "require_action_comment": false,
+        "hash_official_outputs": false
+      },
+      "records_management": {
+        "retention_policy_ref": "administration.office_administration.filing_records_management.retention_disposal.retention_policy",
+        "legal_hold_enabled": false,
+        "disposition_action": "archive",
+        "immutable_after_submit": true,
+        "official_copy_on_submit": false,
+        "chain_of_custody_required": false,
+        "retention_trigger_field": null,
+        "legal_hold_field": null
+      },
+      "evidence_policy": {
+        "required_attachments": [],
+        "required_references": [],
+        "required_approvals": [],
+        "verification_fields": []
+      },
+      "legal_hold_policy": {
+        "enabled": false,
+        "hold_field": null,
+        "restrict_disposition_while_active": true,
+        "allow_override_roles": []
+      },
+      "official_copy_policy": {
+        "enabled": true,
+        "format": "pdf",
+        "generate_on_submit": false,
+        "hash_outputs": false,
+        "include_audit_summary": true,
+        "include_attachments_index": true
+      },
+      "chain_of_custody_policy": {
+        "enabled": false,
+        "custody_event_field": null,
+        "require_transfer_reason": false,
+        "require_actor_identity": true
+      },
+      "settlement": {
+        "enabled": false,
+        "source_fields": [],
+        "target_doc_types": [],
+        "allocation_field": null,
+        "requires_reference_selection": false
+      },
+      "actor_validation": {
+        "enabled": false,
+        "required_events": [],
+        "verification_fields": [],
+        "signature_required_on": [],
+        "counterparty_confirmation_required": false
+      },
+      "external_reference_model": {
+        "enabled": false,
+        "primary_source_reference_field": null,
+        "source_reference_fields": [],
+        "reference_kinds": [],
+        "allow_multiple": false
       }
     }
   },
@@ -672,7 +1026,157 @@
         "workflow_state"
       ],
       "default_filters": [],
-      "quick_entry": false
+      "quick_entry": false,
+      "form_layout": {
+        "version": 1,
+        "tabs": [
+          {
+            "id": "overview",
+            "label": "Overview",
+            "sections": [
+              {
+                "id": "identity",
+                "label": "Identity",
+                "columns": [
+                  {
+                    "id": "identity_column_1",
+                    "label": "",
+                    "width": 6,
+                    "fieldIds": [
+                      "title"
+                    ]
+                  },
+                  {
+                    "id": "identity_column_2",
+                    "label": "",
+                    "width": 6,
+                    "fieldIds": [
+                      "reference_no"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "parties",
+                "label": "Parties",
+                "columns": [
+                  {
+                    "id": "parties_column_1",
+                    "label": "",
+                    "width": 12,
+                    "fieldIds": [
+                      "party"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "dates",
+                "label": "Dates",
+                "columns": [
+                  {
+                    "id": "dates_column_1",
+                    "label": "",
+                    "width": 12,
+                    "fieldIds": [
+                      "transaction_date"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "status",
+                "label": "Workflow",
+                "columns": [
+                  {
+                    "id": "status_column_1",
+                    "label": "",
+                    "width": 6,
+                    "fieldIds": [
+                      "workflow_state"
+                    ]
+                  },
+                  {
+                    "id": "status_column_2",
+                    "label": "",
+                    "width": 6,
+                    "fieldIds": [
+                      "listing_status"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "details",
+            "label": "Details",
+            "sections": [
+              {
+                "id": "content",
+                "label": "Details",
+                "columns": [
+                  {
+                    "id": "content_column_1",
+                    "label": "",
+                    "width": 6,
+                    "fieldIds": [
+                      "sponsored_listing_code",
+                      "linked_listing",
+                      "bid_pricing_state"
+                    ]
+                  },
+                  {
+                    "id": "content_column_2",
+                    "label": "",
+                    "width": 6,
+                    "fieldIds": [
+                      "source_campaign",
+                      "sponsored_placement_type"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "content_details",
+                "label": "Description",
+                "columns": [
+                  {
+                    "id": "content_details_column_1",
+                    "label": "",
+                    "width": 12,
+                    "fieldIds": [
+                      "description"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "amounts",
+                "label": "Amounts",
+                "columns": [
+                  {
+                    "id": "amounts_column_1",
+                    "label": "",
+                    "width": 6,
+                    "fieldIds": [
+                      "currency"
+                    ]
+                  },
+                  {
+                    "id": "amounts_column_2",
+                    "label": "",
+                    "width": 6,
+                    "fieldIds": [
+                      "total_amount"
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
     },
     "related_docs": [
       {
@@ -687,6 +1191,11 @@
       },
       {
         "doc_id": "campaign_performance_snapshot",
+        "relation_type": "related",
+        "show_in_related_panel": true
+      },
+      {
+        "doc_id": "party_record",
         "relation_type": "related",
         "show_in_related_panel": true
       }
@@ -709,9 +1218,21 @@
         "doc_id": "campaign_performance_snapshot",
         "lookup_mode": "multiple",
         "purpose": "relation_collection"
+      },
+      {
+        "field_id": "party",
+        "doc_id": "party_record",
+        "lookup_mode": "single",
+        "purpose": "primary_party"
       }
     ],
-    "fetch_rules": [],
+    "fetch_rules": [
+      {
+        "source_field": "party",
+        "doc_id": "party_record",
+        "mode": "context"
+      }
+    ],
     "reference_map": {
       "primary_reference_field": "reference_no",
       "reference_labels": []
@@ -719,6 +1240,7 @@
     "relation_rules": {
       "parent_doc": null,
       "child_docs": [
+        "party_record",
         "marketplace_campaign",
         "listing_binding",
         "campaign_performance_snapshot"
@@ -731,13 +1253,22 @@
       },
       {
         "description": "campaign context from marketplace_campaign"
+      },
+      {
+        "field_id": "party",
+        "doc_id": "party_record",
+        "description": "Borrow context from party_record through party."
       }
     ],
     "ui_panels": {
       "show_activity_log": true,
       "show_comments": true,
       "show_assignments": true,
-      "show_related_docs": true
+      "show_related_docs": true,
+      "show_kpis": true,
+      "show_summaries": true,
+      "show_charts": true,
+      "show_reports": true
     },
     "integration": {
       "external_refs": [],
@@ -747,7 +1278,21 @@
       "doc_key": "sponsored_listing_record",
       "supports_related_lookup": true,
       "supports_fetch_rules": true,
-      "action_side_effects_file": "side_effects.json"
+      "action_side_effects_file": "side_effects.json",
+      "supports_official_copy": true,
+      "supports_evidence_timeline": true,
+      "supports_chain_of_custody": false
+    },
+    "dashboard": {
+      "metric_blocks": [
+        "kpis",
+        "summaries",
+        "charts",
+        "reports",
+        "records"
+      ],
+      "default_view": "list",
+      "reporting_surface": "doc"
     }
   },
   "classification": {
@@ -769,8 +1314,9 @@
         "primary_party_field": "party",
         "counterparty_field": null,
         "party_roles": [
-          "primary_party"
-        ]
+          "party"
+        ],
+        "specific_party_field": null
       },
       "value_model": {
         "currency_field": "currency",
@@ -780,9 +1326,13 @@
         "balance_impact": "none"
       },
       "reference_model": {
-        "reference_no_field": "reference_no",
+        "reference_no_field": "sponsored_listing_code",
         "upstream_links": [],
-        "downstream_links": []
+        "downstream_links": [],
+        "generated_identifier_fields": [
+          "reference_no",
+          "sponsored_listing_code"
+        ]
       },
       "line_items": {
         "enabled": false,
@@ -790,7 +1340,7 @@
         "item_key_field": null,
         "quantity_field": null,
         "rate_field": null,
-        "amount_field": null
+        "amount_field": "total_amount"
       },
       "fulfilment": {
         "enabled": false,
@@ -801,12 +1351,97 @@
       "audit": {
         "track_state_history": true,
         "track_action_log": true,
-        "track_external_refs": true
+        "track_external_refs": true,
+        "require_reason_for_change": false,
+        "require_action_comment": false,
+        "hash_official_outputs": false
+      },
+      "records_management": {
+        "retention_policy_ref": "administration.office_administration.filing_records_management.retention_disposal.retention_policy",
+        "legal_hold_enabled": false,
+        "disposition_action": "archive",
+        "immutable_after_submit": true,
+        "official_copy_on_submit": false,
+        "chain_of_custody_required": false,
+        "retention_trigger_field": null,
+        "legal_hold_field": null
+      },
+      "evidence_policy": {
+        "required_attachments": [],
+        "required_references": [],
+        "required_approvals": [],
+        "verification_fields": []
+      },
+      "legal_hold_policy": {
+        "enabled": false,
+        "hold_field": null,
+        "restrict_disposition_while_active": true,
+        "allow_override_roles": []
+      },
+      "official_copy_policy": {
+        "enabled": true,
+        "format": "pdf",
+        "generate_on_submit": false,
+        "hash_outputs": false,
+        "include_audit_summary": true,
+        "include_attachments_index": true
+      },
+      "chain_of_custody_policy": {
+        "enabled": false,
+        "custody_event_field": null,
+        "require_transfer_reason": false,
+        "require_actor_identity": true
+      },
+      "settlement": {
+        "enabled": false,
+        "source_fields": [],
+        "target_doc_types": [],
+        "allocation_field": null,
+        "requires_reference_selection": false
+      },
+      "actor_validation": {
+        "enabled": false,
+        "required_events": [],
+        "verification_fields": [],
+        "signature_required_on": [],
+        "counterparty_confirmation_required": false
+      },
+      "external_reference_model": {
+        "enabled": false,
+        "primary_source_reference_field": null,
+        "source_reference_fields": [],
+        "reference_kinds": [],
+        "allow_multiple": false
       }
     },
+    "submission_snapshot_policy": {
+      "enabled": true,
+      "trigger_action": "submit",
+      "freeze_fields_after_snapshot": true,
+      "retain_snapshot_history": true,
+      "snapshot_label_template": "{reference_no}-{workflow_state}"
+    },
+    "signature_policy": {
+      "enabled": false,
+      "mode": "approval",
+      "required_roles": [],
+      "reason_required": false,
+      "counter_signature_required": false
+    },
+    "records_profile": {
+      "record_class": "business_record",
+      "legal_significance": "standard",
+      "confidentiality": "internal",
+      "official_copy_format": "pdf",
+      "evidence_gaps": []
+    },
     "report_boundary_classification": "source business doc",
-    "validation_status": "ready",
-    "validation_warnings": []
+    "validation_status": "warning",
+    "validation_warnings": [
+      "helper_relation_field:related_marketplace_campaign",
+      "helper_relation_field:related_listing_binding",
+      "helper_relation_field:related_campaign_performance_snapshot"
+    ]
   },
   "business_logic": {
     "seeded": true,
@@ -852,6 +1487,13 @@
     "api_base_path": "/apis/marketplace_participation_ecosystem/marketplace_advertising/ad_programs/sponsored_listing_record/",
     "status_field": "workflow_state",
     "initial_state": "draft",
+    "actions": [
+      "create",
+      "activate",
+      "pause",
+      "end",
+      "archive"
+    ],
     "required_fields": [
       "title",
       "workflow_state",
@@ -874,9 +1516,83 @@
     "related_docs": [
       "marketplace_campaign",
       "listing_binding",
-      "campaign_performance_snapshot"
+      "campaign_performance_snapshot",
+      "party_record"
     ],
+    "records_profile": {
+      "record_class": "business_record",
+      "legal_significance": "standard",
+      "confidentiality": "internal",
+      "official_copy_format": "pdf",
+      "evidence_gaps": []
+    },
+    "submission_snapshot_policy": {
+      "enabled": true,
+      "trigger_action": "submit",
+      "freeze_fields_after_snapshot": true,
+      "retain_snapshot_history": true,
+      "snapshot_label_template": "{reference_no}-{workflow_state}"
+    },
+    "signature_policy": {
+      "enabled": false,
+      "mode": "approval",
+      "required_roles": [],
+      "reason_required": false,
+      "counter_signature_required": false
+    },
+    "records_management": {
+      "retention_policy_ref": "administration.office_administration.filing_records_management.retention_disposal.retention_policy",
+      "legal_hold_enabled": false,
+      "disposition_action": "archive",
+      "immutable_after_submit": true,
+      "official_copy_on_submit": false,
+      "chain_of_custody_required": false,
+      "retention_trigger_field": null,
+      "legal_hold_field": null
+    },
+    "legal_hold_policy": {
+      "enabled": false,
+      "hold_field": null,
+      "restrict_disposition_while_active": true,
+      "allow_override_roles": []
+    },
+    "official_copy_policy": {
+      "enabled": true,
+      "format": "pdf",
+      "generate_on_submit": false,
+      "hash_outputs": false,
+      "include_audit_summary": true,
+      "include_attachments_index": true
+    },
+    "evidence_policy": {
+      "required_attachments": [],
+      "required_references": [],
+      "required_approvals": [],
+      "verification_fields": []
+    },
+    "chain_of_custody_policy": {
+      "enabled": false,
+      "custody_event_field": null,
+      "require_transfer_reason": false,
+      "require_actor_identity": true
+    },
     "downstream_effects": [],
+    "role_action_matrix": [
+      {
+        "role_id": "System Manager",
+        "actions": [
+          "view",
+          "list",
+          "create",
+          "activate",
+          "pause",
+          "end",
+          "archive"
+        ],
+        "scope": "system",
+        "ownership": "platform"
+      }
+    ],
     "action_side_effects_file": "side_effects.json"
   },
   "runtime": {

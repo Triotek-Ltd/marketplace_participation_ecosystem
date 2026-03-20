@@ -9,7 +9,148 @@
       "workflow_state"
     ],
     "default_filters": [],
-    "quick_entry": false
+    "quick_entry": false,
+    "form_layout": {
+      "version": 1,
+      "tabs": [
+        {
+          "id": "overview",
+          "label": "Overview",
+          "sections": [
+            {
+              "id": "identity",
+              "label": "Identity",
+              "columns": [
+                {
+                  "id": "identity_column_1",
+                  "label": "",
+                  "width": 6,
+                  "fieldIds": [
+                    "title"
+                  ]
+                },
+                {
+                  "id": "identity_column_2",
+                  "label": "",
+                  "width": 6,
+                  "fieldIds": [
+                    "reference_no"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "dates",
+              "label": "Dates",
+              "columns": [
+                {
+                  "id": "dates_column_1",
+                  "label": "",
+                  "width": 6,
+                  "fieldIds": [
+                    "posting_date"
+                  ]
+                },
+                {
+                  "id": "dates_column_2",
+                  "label": "",
+                  "width": 6,
+                  "fieldIds": [
+                    "feed_date"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "status",
+              "label": "Workflow",
+              "columns": [
+                {
+                  "id": "status_column_1",
+                  "label": "",
+                  "width": 6,
+                  "fieldIds": [
+                    "workflow_state"
+                  ]
+                },
+                {
+                  "id": "status_column_2",
+                  "label": "",
+                  "width": 6,
+                  "fieldIds": [
+                    "feed_status"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "details",
+          "label": "Details",
+          "sections": [
+            {
+              "id": "content",
+              "label": "Details",
+              "columns": [
+                {
+                  "id": "content_column_1",
+                  "label": "",
+                  "width": 6,
+                  "fieldIds": [
+                    "feed_code",
+                    "quantity_summary"
+                  ]
+                },
+                {
+                  "id": "content_column_2",
+                  "label": "",
+                  "width": 6,
+                  "fieldIds": [
+                    "source_inventory_reference",
+                    "discrepancy_flag"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "content_details",
+              "label": "Description",
+              "columns": [
+                {
+                  "id": "content_details_column_1",
+                  "label": "",
+                  "width": 12,
+                  "fieldIds": [
+                    "description"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "related",
+          "label": "Related",
+          "sections": [
+            {
+              "id": "relations",
+              "label": "Related Records",
+              "columns": [
+                {
+                  "id": "relations_column_1",
+                  "label": "",
+                  "width": 12,
+                  "fieldIds": [
+                    "marketplace_account"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
   },
   "related_docs": [
     {
@@ -51,9 +192,21 @@
       "doc_id": "inventory_balance",
       "lookup_mode": "multiple",
       "purpose": "relation_collection"
+    },
+    {
+      "field_id": "marketplace_account",
+      "doc_id": "marketplace_account",
+      "lookup_mode": "single",
+      "purpose": "relation"
     }
   ],
-  "fetch_rules": [],
+  "fetch_rules": [
+    {
+      "source_field": "related_marketplace_fulfillment_order",
+      "doc_id": "marketplace_fulfillment_order",
+      "mode": "context"
+    }
+  ],
   "reference_map": {
     "primary_reference_field": "reference_no",
     "reference_labels": []
@@ -61,6 +214,7 @@
   "relation_rules": {
     "parent_doc": null,
     "child_docs": [
+      "marketplace_account",
       "listing_binding",
       "marketplace_fulfillment_order",
       "inventory_balance"
@@ -73,13 +227,22 @@
     },
     {
       "description": "inventory context from linked docs"
+    },
+    {
+      "field_id": "related_marketplace_fulfillment_order",
+      "doc_id": "marketplace_fulfillment_order",
+      "description": "Borrow context from marketplace_fulfillment_order through related_marketplace_fulfillment_order."
     }
   ],
   "ui_panels": {
     "show_activity_log": true,
     "show_comments": true,
     "show_assignments": true,
-    "show_related_docs": true
+    "show_related_docs": true,
+    "show_kpis": true,
+    "show_summaries": true,
+    "show_charts": true,
+    "show_reports": true
   },
   "integration": {
     "external_refs": [],
@@ -122,6 +285,20 @@
         ]
       }
     },
-    "action_side_effects_file": "side_effects.json"
+    "action_side_effects_file": "side_effects.json",
+    "supports_official_copy": true,
+    "supports_evidence_timeline": true,
+    "supports_chain_of_custody": false
+  },
+  "dashboard": {
+    "metric_blocks": [
+      "kpis",
+      "summaries",
+      "charts",
+      "reports",
+      "records"
+    ],
+    "default_view": "list",
+    "reporting_surface": "doc"
   }
 }

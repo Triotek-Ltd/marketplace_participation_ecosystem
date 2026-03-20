@@ -4,5 +4,565 @@
   "app_id": "marketplace_participation_ecosystem",
   "type": "module",
   "status": "draft",
-  "supports_submodules": true
+  "supports_submodules": true,
+  "ui": {
+    "icon_key": "apps",
+    "accent": "#246f89",
+    "logo_image": null,
+    "cover_image": null
+  },
+  "dashboard": {
+    "version": 1,
+    "surface": "module",
+    "hero": {
+      "variant": "summary_strip",
+      "show_breadcrumb": true,
+      "show_title": true
+    },
+    "navigation": {
+      "primary_children": "docs",
+      "flatten_submodules_in_ui": true
+    },
+    "blocks": [
+      {
+        "id": "kpis",
+        "type": "kpi_cards",
+        "title": "Marketplace Seller Programs KPIs",
+        "data_source": {
+          "kind": "db",
+          "entity_scope": "module",
+          "entity_id": "marketplace_seller_programs",
+          "metric_family": "overview"
+        }
+      },
+      {
+        "id": "summaries",
+        "type": "summary_cards",
+        "title": "Marketplace Seller Programs summaries",
+        "data_source": {
+          "kind": "db",
+          "entity_scope": "module",
+          "entity_id": "marketplace_seller_programs",
+          "metric_family": "summary"
+        }
+      },
+      {
+        "id": "charts",
+        "type": "chart_group",
+        "title": "Marketplace Seller Programs charts",
+        "data_source": {
+          "kind": "db",
+          "entity_scope": "module",
+          "entity_id": "marketplace_seller_programs",
+          "metric_family": "trend"
+        },
+        "chart_specs": [
+          {
+            "id": "marketplace_seller_programs_trend_line",
+            "label": "Marketplace Seller Programs trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "marketplace_seller_programs_volume_column",
+            "label": "Marketplace Seller Programs volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "marketplace_seller_programs_distribution_donut",
+            "label": "Marketplace Seller Programs distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          },
+          {
+            "id": "listing_binding_trend_line",
+            "label": "Listing Binding trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "listing_binding_volume_column",
+            "label": "Listing Binding volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "listing_binding_distribution_donut",
+            "label": "Listing Binding distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          },
+          {
+            "id": "marketplace_account_trend_line",
+            "label": "Marketplace Account trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "marketplace_account_volume_column",
+            "label": "Marketplace Account volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "marketplace_account_distribution_donut",
+            "label": "Marketplace Account distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          },
+          {
+            "id": "seller_onboarding_case_trend_line",
+            "label": "Seller Onboarding Case trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "seller_onboarding_case_volume_column",
+            "label": "Seller Onboarding Case volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "seller_onboarding_case_distribution_donut",
+            "label": "Seller Onboarding Case distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          }
+        ]
+      },
+      {
+        "id": "reports",
+        "type": "report_links",
+        "title": "Marketplace Seller Programs reports",
+        "data_source": {
+          "kind": "db",
+          "entity_scope": "module",
+          "entity_id": "marketplace_seller_programs",
+          "metric_family": "reporting"
+        }
+      }
+    ]
+  },
+  "reporting": {
+    "supports_kpis": true,
+    "supports_summaries": true,
+    "supports_charts": true,
+    "supports_reports": true,
+    "default_time_grain": "month",
+    "default_comparison": "previous_period",
+    "default_currency_mode": "base_currency",
+    "metric_sources": [
+      {
+        "id": "overview",
+        "kind": "db",
+        "entity_scope": "module",
+        "entity_id": "marketplace_seller_programs",
+        "metric_family": "overview"
+      },
+      {
+        "id": "summary",
+        "kind": "db",
+        "entity_scope": "module",
+        "entity_id": "marketplace_seller_programs",
+        "metric_family": "summary"
+      },
+      {
+        "id": "trend",
+        "kind": "db",
+        "entity_scope": "module",
+        "entity_id": "marketplace_seller_programs",
+        "metric_family": "trend"
+      },
+      {
+        "id": "reporting",
+        "kind": "db",
+        "entity_scope": "module",
+        "entity_id": "marketplace_seller_programs",
+        "metric_family": "reporting"
+      }
+    ],
+    "report_registry": [
+      {
+        "id": "overview_report",
+        "label": "Marketplace Seller Programs Overview",
+        "report_type": "dashboard_summary",
+        "surface": "module"
+      },
+      {
+        "id": "trend_report",
+        "label": "Marketplace Seller Programs Trends",
+        "report_type": "trend_analysis",
+        "surface": "module"
+      },
+      {
+        "id": "summary_report",
+        "label": "Listing Binding Summary",
+        "report_type": "summary_report",
+        "surface": "doc"
+      },
+      {
+        "id": "detail_report",
+        "label": "Listing Binding Detail",
+        "report_type": "detail_report",
+        "surface": "doc"
+      }
+    ],
+    "chart_library": {
+      "renderer": "recharts",
+      "recommended_package": "recharts",
+      "source": "https://recharts.org/en-US"
+    },
+    "chart_registry": [
+      {
+        "id": "marketplace_seller_programs_trend_line",
+        "label": "Marketplace Seller Programs trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "marketplace_seller_programs_volume_column",
+        "label": "Marketplace Seller Programs volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "marketplace_seller_programs_distribution_donut",
+        "label": "Marketplace Seller Programs distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      },
+      {
+        "id": "listing_binding_trend_line",
+        "label": "Listing Binding trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "listing_binding_volume_column",
+        "label": "Listing Binding volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "listing_binding_distribution_donut",
+        "label": "Listing Binding distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      },
+      {
+        "id": "marketplace_account_trend_line",
+        "label": "Marketplace Account trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "marketplace_account_volume_column",
+        "label": "Marketplace Account volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "marketplace_account_distribution_donut",
+        "label": "Marketplace Account distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      },
+      {
+        "id": "seller_onboarding_case_trend_line",
+        "label": "Seller Onboarding Case trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "seller_onboarding_case_volume_column",
+        "label": "Seller Onboarding Case volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "seller_onboarding_case_distribution_donut",
+        "label": "Seller Onboarding Case distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      }
+    ],
+    "source_docs": [],
+    "source_fields": [],
+    "child_sources": [
+      {
+        "id": "listing_binding",
+        "title": "Listing Binding",
+        "surface": null,
+        "source_docs": []
+      },
+      {
+        "id": "marketplace_account",
+        "title": "Marketplace Account",
+        "surface": null,
+        "source_docs": []
+      },
+      {
+        "id": "seller_onboarding_case",
+        "title": "Seller Onboarding Case",
+        "surface": null,
+        "source_docs": []
+      }
+    ]
+  },
+  "flow": {
+    "related_docs": [
+      "marketplace_account",
+      "marketplace_fulfillment_order",
+      "sponsored_listing_record",
+      "catalog_product",
+      "seller_onboarding_case",
+      "listing_binding",
+      "marketplace_campaign"
+    ],
+    "upstream_docs": [
+      "marketplace_account",
+      "marketplace_fulfillment_order",
+      "sponsored_listing_record",
+      "catalog_product",
+      "seller_onboarding_case",
+      "listing_binding",
+      "marketplace_campaign"
+    ],
+    "downstream_docs": [
+      "sponsored_listing_record"
+    ],
+    "actors": [
+      "account owner",
+      "case owner"
+    ],
+    "downstream_effects": [],
+    "emits_records": [
+      {
+        "action_id": "activate",
+        "target_doc": "sponsored_listing_record",
+        "effect_type": "create_record"
+      }
+    ],
+    "handoff_targets": [
+      "marketplace_account",
+      "marketplace_fulfillment_order",
+      "sponsored_listing_record",
+      "catalog_product",
+      "seller_onboarding_case",
+      "listing_binding",
+      "marketplace_campaign"
+    ],
+    "graph_edges": [
+      {
+        "source_doc": "listing_binding",
+        "target_doc": "marketplace_account",
+        "relation": "references"
+      },
+      {
+        "source_doc": "listing_binding",
+        "target_doc": "marketplace_fulfillment_order",
+        "relation": "references"
+      },
+      {
+        "source_doc": "listing_binding",
+        "target_doc": "sponsored_listing_record",
+        "relation": "references"
+      },
+      {
+        "source_doc": "listing_binding",
+        "target_doc": "catalog_product",
+        "relation": "references"
+      },
+      {
+        "source_doc": "listing_binding",
+        "target_doc": "sponsored_listing_record",
+        "relation": "create_record",
+        "action_id": "activate"
+      },
+      {
+        "source_doc": "marketplace_account",
+        "target_doc": "seller_onboarding_case",
+        "relation": "references"
+      },
+      {
+        "source_doc": "marketplace_account",
+        "target_doc": "listing_binding",
+        "relation": "references"
+      },
+      {
+        "source_doc": "marketplace_account",
+        "target_doc": "marketplace_campaign",
+        "relation": "references"
+      },
+      {
+        "source_doc": "seller_onboarding_case",
+        "target_doc": "marketplace_account",
+        "relation": "references"
+      },
+      {
+        "source_doc": "seller_onboarding_case",
+        "target_doc": "listing_binding",
+        "relation": "references"
+      }
+    ],
+    "operating_graph": {
+      "nodes": [
+        {
+          "id": "marketplace_account",
+          "kind": "doc"
+        },
+        {
+          "id": "marketplace_fulfillment_order",
+          "kind": "doc"
+        },
+        {
+          "id": "sponsored_listing_record",
+          "kind": "doc"
+        },
+        {
+          "id": "catalog_product",
+          "kind": "doc"
+        },
+        {
+          "id": "seller_onboarding_case",
+          "kind": "doc"
+        },
+        {
+          "id": "listing_binding",
+          "kind": "doc"
+        },
+        {
+          "id": "marketplace_campaign",
+          "kind": "doc"
+        }
+      ],
+      "edges": [
+        {
+          "source_doc": "listing_binding",
+          "target_doc": "marketplace_account",
+          "relation": "references"
+        },
+        {
+          "source_doc": "listing_binding",
+          "target_doc": "marketplace_fulfillment_order",
+          "relation": "references"
+        },
+        {
+          "source_doc": "listing_binding",
+          "target_doc": "sponsored_listing_record",
+          "relation": "references"
+        },
+        {
+          "source_doc": "listing_binding",
+          "target_doc": "catalog_product",
+          "relation": "references"
+        },
+        {
+          "source_doc": "listing_binding",
+          "target_doc": "sponsored_listing_record",
+          "relation": "create_record",
+          "action_id": "activate"
+        },
+        {
+          "source_doc": "marketplace_account",
+          "target_doc": "seller_onboarding_case",
+          "relation": "references"
+        },
+        {
+          "source_doc": "marketplace_account",
+          "target_doc": "listing_binding",
+          "relation": "references"
+        },
+        {
+          "source_doc": "marketplace_account",
+          "target_doc": "marketplace_campaign",
+          "relation": "references"
+        },
+        {
+          "source_doc": "seller_onboarding_case",
+          "target_doc": "marketplace_account",
+          "relation": "references"
+        },
+        {
+          "source_doc": "seller_onboarding_case",
+          "target_doc": "listing_binding",
+          "relation": "references"
+        }
+      ]
+    }
+  },
+  "contract_version": 1
 }

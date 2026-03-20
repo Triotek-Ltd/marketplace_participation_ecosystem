@@ -1,10 +1,1 @@
-{
-  "archive": [
-    {
-      "type": "update_current",
-      "fields": {
-        "workflow_state": "archived"
-      }
-    }
-  ]
-}
+{}

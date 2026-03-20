@@ -6,10 +6,10 @@ from core.services.relation_resolution import RelationResolutionService
 
 
 DOC_ID = "marketplace_fulfillment_order"
-RELATED_DOCS = [{'doc_id': 'marketplace_account', 'relation_type': 'related', 'show_in_related_panel': True}, {'doc_id': 'marketplace_inventory_feed', 'relation_type': 'related', 'show_in_related_panel': True}, {'doc_id': 'marketplace_return_case', 'relation_type': 'related', 'show_in_related_panel': True}, {'doc_id': 'external_fulfillment_order', 'relation_type': 'related', 'show_in_related_panel': True}]
-FETCH_RULES = []
+RELATED_DOCS = [{'doc_id': 'marketplace_account', 'relation_type': 'related', 'show_in_related_panel': True}, {'doc_id': 'marketplace_inventory_feed', 'relation_type': 'related', 'show_in_related_panel': True}, {'doc_id': 'marketplace_return_case', 'relation_type': 'related', 'show_in_related_panel': True}, {'doc_id': 'external_fulfillment_order', 'relation_type': 'related', 'show_in_related_panel': True}, {'doc_id': 'party_record', 'relation_type': 'related', 'show_in_related_panel': True}]
+FETCH_RULES = [{'source_field': 'party', 'doc_id': 'party_record', 'mode': 'context'}, {'source_field': 'related_external_fulfillment_order', 'doc_id': 'external_fulfillment_order', 'mode': 'context'}]
 
-BORROWED_FIELDS = [{'description': 'order/account context from linked marketplace or operations docs'}]
+BORROWED_FIELDS = [{'description': 'order/account context from linked marketplace or operations docs'}, {'field_id': 'party', 'doc_id': 'party_record', 'description': 'Borrow context from party_record through party.'}, {'field_id': 'related_external_fulfillment_order', 'doc_id': 'external_fulfillment_order', 'description': 'Borrow context from external_fulfillment_order through related_external_fulfillment_order.'}]
 
 class RelationService:
     def _bridge(self, context: dict | None = None) -> RelationResolutionService | None:

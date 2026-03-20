@@ -44,7 +44,7 @@
       "label": "Reference No",
       "type": "Data",
       "required": false,
-      "read_only": false,
+      "read_only": true,
       "default": null,
       "unique": false,
       "options": null,
@@ -127,7 +127,7 @@
       "label": "Case Code",
       "type": "Data",
       "required": false,
-      "read_only": false,
+      "read_only": true,
       "default": null,
       "unique": false,
       "options": null,
@@ -288,7 +288,8 @@
         "list_visible": false,
         "filterable": false,
         "sortable": false
-      }
+      },
+      "relation_kind": "explicit"
     },
     {
       "field_id": "related_listing_binding",
@@ -312,7 +313,8 @@
         "list_visible": false,
         "filterable": false,
         "sortable": false
-      }
+      },
+      "relation_kind": "explicit"
     },
     {
       "field_id": "related_refund_case",
@@ -336,7 +338,8 @@
         "list_visible": false,
         "filterable": false,
         "sortable": false
-      }
+      },
+      "relation_kind": "explicit"
     },
     {
       "field_id": "related_delivery_exception_case",
@@ -360,7 +363,8 @@
         "list_visible": false,
         "filterable": false,
         "sortable": false
-      }
+      },
+      "relation_kind": "explicit"
     }
   ],
   "field_groups": {
@@ -417,7 +421,12 @@
     "supports_attachments": true,
     "supports_comments": true,
     "supports_activity_log": true,
-    "supports_assignments": true
+    "supports_assignments": true,
+    "is_submittable": false,
+    "supports_submission_snapshot": true,
+    "supports_official_outputs": true,
+    "supports_evidence_pack": true,
+    "supports_signoff": true
   },
   "lifecycle": {
     "initial_state": "requested",
@@ -540,7 +549,9 @@
         "escalate",
         "close",
         "archive"
-      ]
+      ],
+      "scope": "system",
+      "ownership": "platform"
     },
     {
       "role_id": "account owner",
@@ -548,9 +559,12 @@
         "view",
         "list",
         "create",
+        "update",
         "close",
         "archive"
-      ]
+      ],
+      "scope": "execution",
+      "ownership": "finance"
     },
     {
       "role_id": "operations coordinator",
@@ -560,14 +574,18 @@
         "review",
         "approve",
         "reject"
-      ]
+      ],
+      "scope": "execution",
+      "ownership": "operations"
     },
     {
       "role_id": "case owner",
       "actions": [
         "view",
         "list"
-      ]
+      ],
+      "scope": "document",
+      "ownership": "functional"
     }
   ],
   "transaction_behavior": {
@@ -581,7 +599,8 @@
     "party_model": {
       "primary_party_field": null,
       "counterparty_field": null,
-      "party_roles": []
+      "party_roles": [],
+      "specific_party_field": null
     },
     "value_model": {
       "currency_field": null,
@@ -589,9 +608,13 @@
       "balance_impact": "none"
     },
     "reference_model": {
-      "reference_no_field": "reference_no",
+      "reference_no_field": "case_code",
       "upstream_links": [],
-      "downstream_links": []
+      "downstream_links": [],
+      "generated_identifier_fields": [
+        "reference_no",
+        "case_code"
+      ]
     },
     "line_items": {
       "enabled": false,
@@ -602,15 +625,100 @@
       "amount_field": null
     },
     "fulfilment": {
-      "enabled": false,
+      "enabled": true,
       "dispatch_state_field": null,
       "delivery_state_field": null,
-      "completion_action": "confirm"
+      "completion_action": "complete"
     },
     "audit": {
       "track_state_history": true,
       "track_action_log": true,
-      "track_external_refs": true
+      "track_external_refs": true,
+      "require_reason_for_change": false,
+      "require_action_comment": false,
+      "hash_official_outputs": false
+    },
+    "records_management": {
+      "retention_policy_ref": "administration.office_administration.filing_records_management.retention_disposal.retention_policy",
+      "legal_hold_enabled": false,
+      "disposition_action": "archive",
+      "immutable_after_submit": true,
+      "official_copy_on_submit": false,
+      "chain_of_custody_required": false,
+      "retention_trigger_field": null,
+      "legal_hold_field": null
+    },
+    "evidence_policy": {
+      "required_attachments": [],
+      "required_references": [],
+      "required_approvals": [],
+      "verification_fields": []
+    },
+    "legal_hold_policy": {
+      "enabled": false,
+      "hold_field": null,
+      "restrict_disposition_while_active": true,
+      "allow_override_roles": []
+    },
+    "official_copy_policy": {
+      "enabled": true,
+      "format": "pdf",
+      "generate_on_submit": false,
+      "hash_outputs": false,
+      "include_audit_summary": true,
+      "include_attachments_index": true
+    },
+    "chain_of_custody_policy": {
+      "enabled": false,
+      "custody_event_field": null,
+      "require_transfer_reason": false,
+      "require_actor_identity": true
+    },
+    "settlement": {
+      "enabled": true,
+      "source_fields": [],
+      "target_doc_types": [
+        "delivery_exception_case"
+      ],
+      "allocation_field": null,
+      "requires_reference_selection": true
+    },
+    "actor_validation": {
+      "enabled": true,
+      "required_events": [
+        "approval",
+        "delivery_confirmation"
+      ],
+      "verification_fields": [],
+      "signature_required_on": [
+        "approve",
+        "complete"
+      ],
+      "counterparty_confirmation_required": false
+    },
+    "external_reference_model": {
+      "enabled": false,
+      "primary_source_reference_field": null,
+      "source_reference_fields": [],
+      "reference_kinds": [],
+      "allow_multiple": false
     }
+  },
+  "submission_snapshot_policy": {
+    "enabled": true,
+    "trigger_action": "submit",
+    "freeze_fields_after_snapshot": true,
+    "retain_snapshot_history": true,
+    "snapshot_label_template": "{reference_no}-{workflow_state}"
+  },
+  "signature_policy": {
+    "enabled": true,
+    "mode": "approval",
+    "required_roles": [
+      "System Manager",
+      "operations coordinator"
+    ],
+    "reason_required": false,
+    "counter_signature_required": false
   }
 }

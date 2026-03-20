@@ -7,9 +7,9 @@ from core.services.relation_resolution import RelationResolutionService
 
 DOC_ID = "marketplace_inventory_feed"
 RELATED_DOCS = [{'doc_id': 'marketplace_account', 'relation_type': 'related', 'show_in_related_panel': True}, {'doc_id': 'listing_binding', 'relation_type': 'related', 'show_in_related_panel': True}, {'doc_id': 'marketplace_fulfillment_order', 'relation_type': 'related', 'show_in_related_panel': True}, {'doc_id': 'inventory_balance', 'relation_type': 'related', 'show_in_related_panel': True}]
-FETCH_RULES = []
+FETCH_RULES = [{'source_field': 'related_marketplace_fulfillment_order', 'doc_id': 'marketplace_fulfillment_order', 'mode': 'context'}]
 
-BORROWED_FIELDS = [{'description': 'listing'}, {'description': 'inventory context from linked docs'}]
+BORROWED_FIELDS = [{'description': 'listing'}, {'description': 'inventory context from linked docs'}, {'field_id': 'related_marketplace_fulfillment_order', 'doc_id': 'marketplace_fulfillment_order', 'description': 'Borrow context from marketplace_fulfillment_order through related_marketplace_fulfillment_order.'}]
 
 class RelationService:
     def _bridge(self, context: dict | None = None) -> RelationResolutionService | None:

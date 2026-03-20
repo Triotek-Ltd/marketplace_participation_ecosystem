@@ -8,5 +8,1403 @@
     "id": "CUSTOM-PROPRIETARY",
     "type": "proprietary_custom",
     "terms_ref": "LICENSE"
+  },
+  "ui": {
+    "icon_key": "apps",
+    "accent": "#246f89",
+    "logo_image": null,
+    "cover_image": null
+  },
+  "dashboard": {
+    "version": 1,
+    "surface": "app",
+    "hero": {
+      "variant": "summary_strip",
+      "show_breadcrumb": true,
+      "show_title": true
+    },
+    "navigation": {
+      "primary_children": "modules",
+      "flatten_submodules_in_ui": false
+    },
+    "blocks": [
+      {
+        "id": "kpis",
+        "type": "kpi_cards",
+        "title": "My Plug App KPIs",
+        "data_source": {
+          "kind": "db",
+          "entity_scope": "app",
+          "entity_id": "marketplace_participation_ecosystem",
+          "metric_family": "overview"
+        }
+      },
+      {
+        "id": "summaries",
+        "type": "summary_cards",
+        "title": "My Plug App summaries",
+        "data_source": {
+          "kind": "db",
+          "entity_scope": "app",
+          "entity_id": "marketplace_participation_ecosystem",
+          "metric_family": "summary"
+        }
+      },
+      {
+        "id": "charts",
+        "type": "chart_group",
+        "title": "My Plug App charts",
+        "data_source": {
+          "kind": "db",
+          "entity_scope": "app",
+          "entity_id": "marketplace_participation_ecosystem",
+          "metric_family": "trend"
+        },
+        "chart_specs": [
+          {
+            "id": "marketplace_participation_ecosystem_trend_line",
+            "label": "My Plug App trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "marketplace_participation_ecosystem_volume_column",
+            "label": "My Plug App volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "marketplace_participation_ecosystem_distribution_donut",
+            "label": "My Plug App distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          },
+          {
+            "id": "marketplace_advertising_trend_line",
+            "label": "Marketplace Advertising trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "marketplace_advertising_volume_column",
+            "label": "Marketplace Advertising volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "marketplace_advertising_distribution_donut",
+            "label": "Marketplace Advertising distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          },
+          {
+            "id": "marketplace_campaign_trend_line",
+            "label": "Marketplace Campaign trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "marketplace_campaign_volume_column",
+            "label": "Marketplace Campaign volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "marketplace_campaign_distribution_donut",
+            "label": "Marketplace Campaign distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          },
+          {
+            "id": "sponsored_listing_record_trend_line",
+            "label": "Sponsored Listing Record trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "sponsored_listing_record_volume_column",
+            "label": "Sponsored Listing Record volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "sponsored_listing_record_distribution_donut",
+            "label": "Sponsored Listing Record distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          },
+          {
+            "id": "campaign_performance_snapshot_trend_line",
+            "label": "Campaign Performance Snapshot trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "campaign_performance_snapshot_volume_column",
+            "label": "Campaign Performance Snapshot volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "campaign_performance_snapshot_distribution_donut",
+            "label": "Campaign Performance Snapshot distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          },
+          {
+            "id": "marketplace_fulfillment_programs_trend_line",
+            "label": "Marketplace Fulfillment Programs trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "marketplace_fulfillment_programs_volume_column",
+            "label": "Marketplace Fulfillment Programs volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "marketplace_fulfillment_programs_distribution_donut",
+            "label": "Marketplace Fulfillment Programs distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          },
+          {
+            "id": "marketplace_fulfillment_order_trend_line",
+            "label": "Marketplace Fulfillment Order trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "marketplace_fulfillment_order_volume_column",
+            "label": "Marketplace Fulfillment Order volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "marketplace_fulfillment_order_distribution_donut",
+            "label": "Marketplace Fulfillment Order distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          },
+          {
+            "id": "marketplace_inventory_feed_trend_line",
+            "label": "Marketplace Inventory Feed trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "marketplace_inventory_feed_volume_column",
+            "label": "Marketplace Inventory Feed volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "marketplace_inventory_feed_distribution_donut",
+            "label": "Marketplace Inventory Feed distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          },
+          {
+            "id": "marketplace_return_case_trend_line",
+            "label": "Marketplace Return Case trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "marketplace_return_case_volume_column",
+            "label": "Marketplace Return Case volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "marketplace_return_case_distribution_donut",
+            "label": "Marketplace Return Case distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          },
+          {
+            "id": "marketplace_seller_programs_trend_line",
+            "label": "Marketplace Seller Programs trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "marketplace_seller_programs_volume_column",
+            "label": "Marketplace Seller Programs volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "marketplace_seller_programs_distribution_donut",
+            "label": "Marketplace Seller Programs distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          },
+          {
+            "id": "listing_binding_trend_line",
+            "label": "Listing Binding trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "listing_binding_volume_column",
+            "label": "Listing Binding volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "listing_binding_distribution_donut",
+            "label": "Listing Binding distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          },
+          {
+            "id": "marketplace_account_trend_line",
+            "label": "Marketplace Account trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "marketplace_account_volume_column",
+            "label": "Marketplace Account volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "marketplace_account_distribution_donut",
+            "label": "Marketplace Account distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          },
+          {
+            "id": "seller_onboarding_case_trend_line",
+            "label": "Seller Onboarding Case trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "seller_onboarding_case_volume_column",
+            "label": "Seller Onboarding Case volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "seller_onboarding_case_distribution_donut",
+            "label": "Seller Onboarding Case distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          }
+        ]
+      },
+      {
+        "id": "reports",
+        "type": "report_links",
+        "title": "My Plug App reports",
+        "data_source": {
+          "kind": "db",
+          "entity_scope": "app",
+          "entity_id": "marketplace_participation_ecosystem",
+          "metric_family": "reporting"
+        }
+      }
+    ]
+  },
+  "reporting": {
+    "supports_kpis": true,
+    "supports_summaries": true,
+    "supports_charts": true,
+    "supports_reports": true,
+    "default_time_grain": "month",
+    "default_comparison": "previous_period",
+    "default_currency_mode": "base_currency",
+    "metric_sources": [
+      {
+        "id": "overview",
+        "kind": "db",
+        "entity_scope": "app",
+        "entity_id": "marketplace_participation_ecosystem",
+        "metric_family": "overview"
+      },
+      {
+        "id": "summary",
+        "kind": "db",
+        "entity_scope": "app",
+        "entity_id": "marketplace_participation_ecosystem",
+        "metric_family": "summary"
+      },
+      {
+        "id": "trend",
+        "kind": "db",
+        "entity_scope": "app",
+        "entity_id": "marketplace_participation_ecosystem",
+        "metric_family": "trend"
+      },
+      {
+        "id": "reporting",
+        "kind": "db",
+        "entity_scope": "app",
+        "entity_id": "marketplace_participation_ecosystem",
+        "metric_family": "reporting"
+      }
+    ],
+    "report_registry": [
+      {
+        "id": "overview_report",
+        "label": "My Plug App Overview",
+        "report_type": "dashboard_summary",
+        "surface": "app"
+      },
+      {
+        "id": "trend_report",
+        "label": "My Plug App Trends",
+        "report_type": "trend_analysis",
+        "surface": "app"
+      },
+      {
+        "id": "summary_report",
+        "label": "Marketplace Campaign Summary",
+        "report_type": "summary_report",
+        "surface": "doc"
+      },
+      {
+        "id": "detail_report",
+        "label": "Marketplace Campaign Detail",
+        "report_type": "detail_report",
+        "surface": "doc"
+      }
+    ],
+    "chart_library": {
+      "renderer": "recharts",
+      "recommended_package": "recharts",
+      "source": "https://recharts.org/en-US"
+    },
+    "chart_registry": [
+      {
+        "id": "marketplace_participation_ecosystem_trend_line",
+        "label": "My Plug App trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "marketplace_participation_ecosystem_volume_column",
+        "label": "My Plug App volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "marketplace_participation_ecosystem_distribution_donut",
+        "label": "My Plug App distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      },
+      {
+        "id": "marketplace_advertising_trend_line",
+        "label": "Marketplace Advertising trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "marketplace_advertising_volume_column",
+        "label": "Marketplace Advertising volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "marketplace_advertising_distribution_donut",
+        "label": "Marketplace Advertising distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      },
+      {
+        "id": "marketplace_campaign_trend_line",
+        "label": "Marketplace Campaign trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "marketplace_campaign_volume_column",
+        "label": "Marketplace Campaign volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "marketplace_campaign_distribution_donut",
+        "label": "Marketplace Campaign distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      },
+      {
+        "id": "sponsored_listing_record_trend_line",
+        "label": "Sponsored Listing Record trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "sponsored_listing_record_volume_column",
+        "label": "Sponsored Listing Record volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "sponsored_listing_record_distribution_donut",
+        "label": "Sponsored Listing Record distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      },
+      {
+        "id": "campaign_performance_snapshot_trend_line",
+        "label": "Campaign Performance Snapshot trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "campaign_performance_snapshot_volume_column",
+        "label": "Campaign Performance Snapshot volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "campaign_performance_snapshot_distribution_donut",
+        "label": "Campaign Performance Snapshot distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      },
+      {
+        "id": "marketplace_fulfillment_programs_trend_line",
+        "label": "Marketplace Fulfillment Programs trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "marketplace_fulfillment_programs_volume_column",
+        "label": "Marketplace Fulfillment Programs volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "marketplace_fulfillment_programs_distribution_donut",
+        "label": "Marketplace Fulfillment Programs distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      },
+      {
+        "id": "marketplace_fulfillment_order_trend_line",
+        "label": "Marketplace Fulfillment Order trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "marketplace_fulfillment_order_volume_column",
+        "label": "Marketplace Fulfillment Order volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "marketplace_fulfillment_order_distribution_donut",
+        "label": "Marketplace Fulfillment Order distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      },
+      {
+        "id": "marketplace_inventory_feed_trend_line",
+        "label": "Marketplace Inventory Feed trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "marketplace_inventory_feed_volume_column",
+        "label": "Marketplace Inventory Feed volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "marketplace_inventory_feed_distribution_donut",
+        "label": "Marketplace Inventory Feed distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      },
+      {
+        "id": "marketplace_return_case_trend_line",
+        "label": "Marketplace Return Case trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "marketplace_return_case_volume_column",
+        "label": "Marketplace Return Case volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "marketplace_return_case_distribution_donut",
+        "label": "Marketplace Return Case distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      },
+      {
+        "id": "marketplace_seller_programs_trend_line",
+        "label": "Marketplace Seller Programs trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "marketplace_seller_programs_volume_column",
+        "label": "Marketplace Seller Programs volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "marketplace_seller_programs_distribution_donut",
+        "label": "Marketplace Seller Programs distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      },
+      {
+        "id": "listing_binding_trend_line",
+        "label": "Listing Binding trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "listing_binding_volume_column",
+        "label": "Listing Binding volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "listing_binding_distribution_donut",
+        "label": "Listing Binding distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      },
+      {
+        "id": "marketplace_account_trend_line",
+        "label": "Marketplace Account trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "marketplace_account_volume_column",
+        "label": "Marketplace Account volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "marketplace_account_distribution_donut",
+        "label": "Marketplace Account distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      },
+      {
+        "id": "seller_onboarding_case_trend_line",
+        "label": "Seller Onboarding Case trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "seller_onboarding_case_volume_column",
+        "label": "Seller Onboarding Case volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "seller_onboarding_case_distribution_donut",
+        "label": "Seller Onboarding Case distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      }
+    ],
+    "source_docs": [],
+    "source_fields": [],
+    "child_sources": [
+      {
+        "id": "marketplace_advertising",
+        "title": "Marketplace Advertising",
+        "surface": "module",
+        "source_docs": []
+      },
+      {
+        "id": "marketplace_fulfillment_programs",
+        "title": "Marketplace Fulfillment Programs",
+        "surface": "module",
+        "source_docs": []
+      },
+      {
+        "id": "marketplace_seller_programs",
+        "title": "Marketplace Seller Programs",
+        "surface": "module",
+        "source_docs": []
+      }
+    ]
+  },
+  "flow": {
+    "related_docs": [
+      "marketplace_account",
+      "sponsored_listing_record",
+      "campaign_performance_snapshot",
+      "marketplace_campaign",
+      "listing_binding",
+      "campaign_result",
+      "marketplace_inventory_feed",
+      "marketplace_return_case",
+      "external_fulfillment_order",
+      "marketplace_fulfillment_order",
+      "inventory_balance",
+      "refund_case",
+      "delivery_exception_case",
+      "catalog_product",
+      "seller_onboarding_case"
+    ],
+    "upstream_docs": [
+      "marketplace_account",
+      "sponsored_listing_record",
+      "campaign_performance_snapshot",
+      "marketplace_campaign",
+      "listing_binding",
+      "campaign_result",
+      "marketplace_inventory_feed",
+      "marketplace_return_case",
+      "external_fulfillment_order",
+      "marketplace_fulfillment_order",
+      "inventory_balance",
+      "refund_case",
+      "delivery_exception_case",
+      "catalog_product",
+      "seller_onboarding_case"
+    ],
+    "downstream_docs": [
+      "sponsored_listing_record",
+      "marketplace_return_case",
+      "refund_case"
+    ],
+    "actors": [
+      "Finance Officer",
+      "account owner",
+      "operations coordinator",
+      "case owner"
+    ],
+    "downstream_effects": [],
+    "emits_records": [
+      {
+        "action_id": "approve",
+        "target_doc": "sponsored_listing_record",
+        "effect_type": "create_record"
+      },
+      {
+        "action_id": "close",
+        "target_doc": "marketplace_return_case",
+        "effect_type": "create_record"
+      },
+      {
+        "action_id": "approve",
+        "target_doc": "refund_case",
+        "effect_type": "create_record"
+      },
+      {
+        "action_id": "close",
+        "target_doc": "refund_case",
+        "effect_type": "create_record"
+      },
+      {
+        "action_id": "activate",
+        "target_doc": "sponsored_listing_record",
+        "effect_type": "create_record"
+      }
+    ],
+    "handoff_targets": [
+      "marketplace_account",
+      "sponsored_listing_record",
+      "campaign_performance_snapshot",
+      "marketplace_campaign",
+      "listing_binding",
+      "campaign_result",
+      "marketplace_inventory_feed",
+      "marketplace_return_case",
+      "external_fulfillment_order",
+      "marketplace_fulfillment_order",
+      "inventory_balance",
+      "refund_case",
+      "delivery_exception_case",
+      "catalog_product",
+      "seller_onboarding_case"
+    ],
+    "graph_edges": [
+      {
+        "source_doc": "marketplace_campaign",
+        "target_doc": "marketplace_account",
+        "relation": "references"
+      },
+      {
+        "source_doc": "marketplace_campaign",
+        "target_doc": "sponsored_listing_record",
+        "relation": "references"
+      },
+      {
+        "source_doc": "marketplace_campaign",
+        "target_doc": "campaign_performance_snapshot",
+        "relation": "references"
+      },
+      {
+        "source_doc": "marketplace_campaign",
+        "target_doc": "sponsored_listing_record",
+        "relation": "create_record",
+        "action_id": "approve"
+      },
+      {
+        "source_doc": "sponsored_listing_record",
+        "target_doc": "marketplace_campaign",
+        "relation": "references"
+      },
+      {
+        "source_doc": "sponsored_listing_record",
+        "target_doc": "listing_binding",
+        "relation": "references"
+      },
+      {
+        "source_doc": "sponsored_listing_record",
+        "target_doc": "campaign_performance_snapshot",
+        "relation": "references"
+      },
+      {
+        "source_doc": "campaign_performance_snapshot",
+        "target_doc": "marketplace_campaign",
+        "relation": "references"
+      },
+      {
+        "source_doc": "campaign_performance_snapshot",
+        "target_doc": "sponsored_listing_record",
+        "relation": "references"
+      },
+      {
+        "source_doc": "campaign_performance_snapshot",
+        "target_doc": "campaign_result",
+        "relation": "references"
+      },
+      {
+        "source_doc": "marketplace_fulfillment_order",
+        "target_doc": "marketplace_account",
+        "relation": "references"
+      },
+      {
+        "source_doc": "marketplace_fulfillment_order",
+        "target_doc": "marketplace_inventory_feed",
+        "relation": "references"
+      },
+      {
+        "source_doc": "marketplace_fulfillment_order",
+        "target_doc": "marketplace_return_case",
+        "relation": "references"
+      },
+      {
+        "source_doc": "marketplace_fulfillment_order",
+        "target_doc": "external_fulfillment_order",
+        "relation": "references"
+      },
+      {
+        "source_doc": "marketplace_fulfillment_order",
+        "target_doc": "marketplace_return_case",
+        "relation": "create_record",
+        "action_id": "close"
+      },
+      {
+        "source_doc": "marketplace_inventory_feed",
+        "target_doc": "marketplace_account",
+        "relation": "references"
+      },
+      {
+        "source_doc": "marketplace_inventory_feed",
+        "target_doc": "listing_binding",
+        "relation": "references"
+      },
+      {
+        "source_doc": "marketplace_inventory_feed",
+        "target_doc": "marketplace_fulfillment_order",
+        "relation": "references"
+      },
+      {
+        "source_doc": "marketplace_inventory_feed",
+        "target_doc": "inventory_balance",
+        "relation": "references"
+      },
+      {
+        "source_doc": "marketplace_return_case",
+        "target_doc": "marketplace_fulfillment_order",
+        "relation": "references"
+      },
+      {
+        "source_doc": "marketplace_return_case",
+        "target_doc": "listing_binding",
+        "relation": "references"
+      },
+      {
+        "source_doc": "marketplace_return_case",
+        "target_doc": "refund_case",
+        "relation": "references"
+      },
+      {
+        "source_doc": "marketplace_return_case",
+        "target_doc": "delivery_exception_case",
+        "relation": "references"
+      },
+      {
+        "source_doc": "marketplace_return_case",
+        "target_doc": "refund_case",
+        "relation": "create_record",
+        "action_id": "approve"
+      },
+      {
+        "source_doc": "marketplace_return_case",
+        "target_doc": "refund_case",
+        "relation": "create_record",
+        "action_id": "close"
+      },
+      {
+        "source_doc": "listing_binding",
+        "target_doc": "marketplace_account",
+        "relation": "references"
+      },
+      {
+        "source_doc": "listing_binding",
+        "target_doc": "marketplace_fulfillment_order",
+        "relation": "references"
+      },
+      {
+        "source_doc": "listing_binding",
+        "target_doc": "sponsored_listing_record",
+        "relation": "references"
+      },
+      {
+        "source_doc": "listing_binding",
+        "target_doc": "catalog_product",
+        "relation": "references"
+      },
+      {
+        "source_doc": "listing_binding",
+        "target_doc": "sponsored_listing_record",
+        "relation": "create_record",
+        "action_id": "activate"
+      },
+      {
+        "source_doc": "marketplace_account",
+        "target_doc": "seller_onboarding_case",
+        "relation": "references"
+      },
+      {
+        "source_doc": "marketplace_account",
+        "target_doc": "listing_binding",
+        "relation": "references"
+      },
+      {
+        "source_doc": "marketplace_account",
+        "target_doc": "marketplace_campaign",
+        "relation": "references"
+      },
+      {
+        "source_doc": "seller_onboarding_case",
+        "target_doc": "marketplace_account",
+        "relation": "references"
+      },
+      {
+        "source_doc": "seller_onboarding_case",
+        "target_doc": "listing_binding",
+        "relation": "references"
+      }
+    ],
+    "operating_graph": {
+      "nodes": [
+        {
+          "id": "marketplace_advertising",
+          "kind": "module",
+          "title": "Marketplace Advertising"
+        },
+        {
+          "id": "marketplace_fulfillment_programs",
+          "kind": "module",
+          "title": "Marketplace Fulfillment Programs"
+        },
+        {
+          "id": "marketplace_seller_programs",
+          "kind": "module",
+          "title": "Marketplace Seller Programs"
+        },
+        {
+          "id": "marketplace_account",
+          "kind": "doc"
+        },
+        {
+          "id": "sponsored_listing_record",
+          "kind": "doc"
+        },
+        {
+          "id": "campaign_performance_snapshot",
+          "kind": "doc"
+        },
+        {
+          "id": "marketplace_campaign",
+          "kind": "doc"
+        },
+        {
+          "id": "listing_binding",
+          "kind": "doc"
+        },
+        {
+          "id": "campaign_result",
+          "kind": "doc"
+        },
+        {
+          "id": "marketplace_inventory_feed",
+          "kind": "doc"
+        },
+        {
+          "id": "marketplace_return_case",
+          "kind": "doc"
+        },
+        {
+          "id": "external_fulfillment_order",
+          "kind": "doc"
+        },
+        {
+          "id": "marketplace_fulfillment_order",
+          "kind": "doc"
+        },
+        {
+          "id": "inventory_balance",
+          "kind": "doc"
+        },
+        {
+          "id": "refund_case",
+          "kind": "doc"
+        },
+        {
+          "id": "delivery_exception_case",
+          "kind": "doc"
+        },
+        {
+          "id": "catalog_product",
+          "kind": "doc"
+        },
+        {
+          "id": "seller_onboarding_case",
+          "kind": "doc"
+        }
+      ],
+      "edges": [
+        {
+          "source_doc": "marketplace_campaign",
+          "target_doc": "marketplace_account",
+          "relation": "references"
+        },
+        {
+          "source_doc": "marketplace_campaign",
+          "target_doc": "sponsored_listing_record",
+          "relation": "references"
+        },
+        {
+          "source_doc": "marketplace_campaign",
+          "target_doc": "campaign_performance_snapshot",
+          "relation": "references"
+        },
+        {
+          "source_doc": "marketplace_campaign",
+          "target_doc": "sponsored_listing_record",
+          "relation": "create_record",
+          "action_id": "approve"
+        },
+        {
+          "source_doc": "sponsored_listing_record",
+          "target_doc": "marketplace_campaign",
+          "relation": "references"
+        },
+        {
+          "source_doc": "sponsored_listing_record",
+          "target_doc": "listing_binding",
+          "relation": "references"
+        },
+        {
+          "source_doc": "sponsored_listing_record",
+          "target_doc": "campaign_performance_snapshot",
+          "relation": "references"
+        },
+        {
+          "source_doc": "campaign_performance_snapshot",
+          "target_doc": "marketplace_campaign",
+          "relation": "references"
+        },
+        {
+          "source_doc": "campaign_performance_snapshot",
+          "target_doc": "sponsored_listing_record",
+          "relation": "references"
+        },
+        {
+          "source_doc": "campaign_performance_snapshot",
+          "target_doc": "campaign_result",
+          "relation": "references"
+        },
+        {
+          "source_doc": "marketplace_fulfillment_order",
+          "target_doc": "marketplace_account",
+          "relation": "references"
+        },
+        {
+          "source_doc": "marketplace_fulfillment_order",
+          "target_doc": "marketplace_inventory_feed",
+          "relation": "references"
+        },
+        {
+          "source_doc": "marketplace_fulfillment_order",
+          "target_doc": "marketplace_return_case",
+          "relation": "references"
+        },
+        {
+          "source_doc": "marketplace_fulfillment_order",
+          "target_doc": "external_fulfillment_order",
+          "relation": "references"
+        },
+        {
+          "source_doc": "marketplace_fulfillment_order",
+          "target_doc": "marketplace_return_case",
+          "relation": "create_record",
+          "action_id": "close"
+        },
+        {
+          "source_doc": "marketplace_inventory_feed",
+          "target_doc": "marketplace_account",
+          "relation": "references"
+        },
+        {
+          "source_doc": "marketplace_inventory_feed",
+          "target_doc": "listing_binding",
+          "relation": "references"
+        },
+        {
+          "source_doc": "marketplace_inventory_feed",
+          "target_doc": "marketplace_fulfillment_order",
+          "relation": "references"
+        },
+        {
+          "source_doc": "marketplace_inventory_feed",
+          "target_doc": "inventory_balance",
+          "relation": "references"
+        },
+        {
+          "source_doc": "marketplace_return_case",
+          "target_doc": "marketplace_fulfillment_order",
+          "relation": "references"
+        },
+        {
+          "source_doc": "marketplace_return_case",
+          "target_doc": "listing_binding",
+          "relation": "references"
+        },
+        {
+          "source_doc": "marketplace_return_case",
+          "target_doc": "refund_case",
+          "relation": "references"
+        },
+        {
+          "source_doc": "marketplace_return_case",
+          "target_doc": "delivery_exception_case",
+          "relation": "references"
+        },
+        {
+          "source_doc": "marketplace_return_case",
+          "target_doc": "refund_case",
+          "relation": "create_record",
+          "action_id": "approve"
+        },
+        {
+          "source_doc": "marketplace_return_case",
+          "target_doc": "refund_case",
+          "relation": "create_record",
+          "action_id": "close"
+        },
+        {
+          "source_doc": "listing_binding",
+          "target_doc": "marketplace_account",
+          "relation": "references"
+        },
+        {
+          "source_doc": "listing_binding",
+          "target_doc": "marketplace_fulfillment_order",
+          "relation": "references"
+        },
+        {
+          "source_doc": "listing_binding",
+          "target_doc": "sponsored_listing_record",
+          "relation": "references"
+        },
+        {
+          "source_doc": "listing_binding",
+          "target_doc": "catalog_product",
+          "relation": "references"
+        },
+        {
+          "source_doc": "listing_binding",
+          "target_doc": "sponsored_listing_record",
+          "relation": "create_record",
+          "action_id": "activate"
+        },
+        {
+          "source_doc": "marketplace_account",
+          "target_doc": "seller_onboarding_case",
+          "relation": "references"
+        },
+        {
+          "source_doc": "marketplace_account",
+          "target_doc": "listing_binding",
+          "relation": "references"
+        },
+        {
+          "source_doc": "marketplace_account",
+          "target_doc": "marketplace_campaign",
+          "relation": "references"
+        },
+        {
+          "source_doc": "seller_onboarding_case",
+          "target_doc": "marketplace_account",
+          "relation": "references"
+        },
+        {
+          "source_doc": "seller_onboarding_case",
+          "target_doc": "listing_binding",
+          "relation": "references"
+        }
+      ]
+    }
   }
 }

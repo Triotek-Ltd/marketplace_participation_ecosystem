@@ -4,5 +4,645 @@
   "app_id": "marketplace_participation_ecosystem",
   "type": "module",
   "status": "draft",
-  "supports_submodules": true
+  "supports_submodules": true,
+  "ui": {
+    "icon_key": "apps",
+    "accent": "#246f89",
+    "logo_image": null,
+    "cover_image": null
+  },
+  "dashboard": {
+    "version": 1,
+    "surface": "module",
+    "hero": {
+      "variant": "summary_strip",
+      "show_breadcrumb": true,
+      "show_title": true
+    },
+    "navigation": {
+      "primary_children": "docs",
+      "flatten_submodules_in_ui": true
+    },
+    "blocks": [
+      {
+        "id": "kpis",
+        "type": "kpi_cards",
+        "title": "Marketplace Fulfillment Programs KPIs",
+        "data_source": {
+          "kind": "db",
+          "entity_scope": "module",
+          "entity_id": "marketplace_fulfillment_programs",
+          "metric_family": "overview"
+        }
+      },
+      {
+        "id": "summaries",
+        "type": "summary_cards",
+        "title": "Marketplace Fulfillment Programs summaries",
+        "data_source": {
+          "kind": "db",
+          "entity_scope": "module",
+          "entity_id": "marketplace_fulfillment_programs",
+          "metric_family": "summary"
+        }
+      },
+      {
+        "id": "charts",
+        "type": "chart_group",
+        "title": "Marketplace Fulfillment Programs charts",
+        "data_source": {
+          "kind": "db",
+          "entity_scope": "module",
+          "entity_id": "marketplace_fulfillment_programs",
+          "metric_family": "trend"
+        },
+        "chart_specs": [
+          {
+            "id": "marketplace_fulfillment_programs_trend_line",
+            "label": "Marketplace Fulfillment Programs trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "marketplace_fulfillment_programs_volume_column",
+            "label": "Marketplace Fulfillment Programs volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "marketplace_fulfillment_programs_distribution_donut",
+            "label": "Marketplace Fulfillment Programs distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          },
+          {
+            "id": "marketplace_fulfillment_order_trend_line",
+            "label": "Marketplace Fulfillment Order trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "marketplace_fulfillment_order_volume_column",
+            "label": "Marketplace Fulfillment Order volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "marketplace_fulfillment_order_distribution_donut",
+            "label": "Marketplace Fulfillment Order distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          },
+          {
+            "id": "marketplace_inventory_feed_trend_line",
+            "label": "Marketplace Inventory Feed trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "marketplace_inventory_feed_volume_column",
+            "label": "Marketplace Inventory Feed volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "marketplace_inventory_feed_distribution_donut",
+            "label": "Marketplace Inventory Feed distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          },
+          {
+            "id": "marketplace_return_case_trend_line",
+            "label": "Marketplace Return Case trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "marketplace_return_case_volume_column",
+            "label": "Marketplace Return Case volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "marketplace_return_case_distribution_donut",
+            "label": "Marketplace Return Case distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          }
+        ]
+      },
+      {
+        "id": "reports",
+        "type": "report_links",
+        "title": "Marketplace Fulfillment Programs reports",
+        "data_source": {
+          "kind": "db",
+          "entity_scope": "module",
+          "entity_id": "marketplace_fulfillment_programs",
+          "metric_family": "reporting"
+        }
+      }
+    ]
+  },
+  "reporting": {
+    "supports_kpis": true,
+    "supports_summaries": true,
+    "supports_charts": true,
+    "supports_reports": true,
+    "default_time_grain": "month",
+    "default_comparison": "previous_period",
+    "default_currency_mode": "base_currency",
+    "metric_sources": [
+      {
+        "id": "overview",
+        "kind": "db",
+        "entity_scope": "module",
+        "entity_id": "marketplace_fulfillment_programs",
+        "metric_family": "overview"
+      },
+      {
+        "id": "summary",
+        "kind": "db",
+        "entity_scope": "module",
+        "entity_id": "marketplace_fulfillment_programs",
+        "metric_family": "summary"
+      },
+      {
+        "id": "trend",
+        "kind": "db",
+        "entity_scope": "module",
+        "entity_id": "marketplace_fulfillment_programs",
+        "metric_family": "trend"
+      },
+      {
+        "id": "reporting",
+        "kind": "db",
+        "entity_scope": "module",
+        "entity_id": "marketplace_fulfillment_programs",
+        "metric_family": "reporting"
+      }
+    ],
+    "report_registry": [
+      {
+        "id": "overview_report",
+        "label": "Marketplace Fulfillment Programs Overview",
+        "report_type": "dashboard_summary",
+        "surface": "module"
+      },
+      {
+        "id": "trend_report",
+        "label": "Marketplace Fulfillment Programs Trends",
+        "report_type": "trend_analysis",
+        "surface": "module"
+      },
+      {
+        "id": "summary_report",
+        "label": "Marketplace Fulfillment Order Summary",
+        "report_type": "summary_report",
+        "surface": "doc"
+      },
+      {
+        "id": "detail_report",
+        "label": "Marketplace Fulfillment Order Detail",
+        "report_type": "detail_report",
+        "surface": "doc"
+      }
+    ],
+    "chart_library": {
+      "renderer": "recharts",
+      "recommended_package": "recharts",
+      "source": "https://recharts.org/en-US"
+    },
+    "chart_registry": [
+      {
+        "id": "marketplace_fulfillment_programs_trend_line",
+        "label": "Marketplace Fulfillment Programs trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "marketplace_fulfillment_programs_volume_column",
+        "label": "Marketplace Fulfillment Programs volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "marketplace_fulfillment_programs_distribution_donut",
+        "label": "Marketplace Fulfillment Programs distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      },
+      {
+        "id": "marketplace_fulfillment_order_trend_line",
+        "label": "Marketplace Fulfillment Order trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "marketplace_fulfillment_order_volume_column",
+        "label": "Marketplace Fulfillment Order volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "marketplace_fulfillment_order_distribution_donut",
+        "label": "Marketplace Fulfillment Order distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      },
+      {
+        "id": "marketplace_inventory_feed_trend_line",
+        "label": "Marketplace Inventory Feed trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "marketplace_inventory_feed_volume_column",
+        "label": "Marketplace Inventory Feed volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "marketplace_inventory_feed_distribution_donut",
+        "label": "Marketplace Inventory Feed distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      },
+      {
+        "id": "marketplace_return_case_trend_line",
+        "label": "Marketplace Return Case trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "marketplace_return_case_volume_column",
+        "label": "Marketplace Return Case volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "marketplace_return_case_distribution_donut",
+        "label": "Marketplace Return Case distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      }
+    ],
+    "source_docs": [],
+    "source_fields": [],
+    "child_sources": [
+      {
+        "id": "marketplace_fulfillment_order",
+        "title": "Marketplace Fulfillment Order",
+        "surface": null,
+        "source_docs": []
+      },
+      {
+        "id": "marketplace_inventory_feed",
+        "title": "Marketplace Inventory Feed",
+        "surface": null,
+        "source_docs": []
+      },
+      {
+        "id": "marketplace_return_case",
+        "title": "Marketplace Return Case",
+        "surface": null,
+        "source_docs": []
+      }
+    ]
+  },
+  "flow": {
+    "related_docs": [
+      "marketplace_account",
+      "marketplace_inventory_feed",
+      "marketplace_return_case",
+      "external_fulfillment_order",
+      "listing_binding",
+      "marketplace_fulfillment_order",
+      "inventory_balance",
+      "refund_case",
+      "delivery_exception_case"
+    ],
+    "upstream_docs": [
+      "marketplace_account",
+      "marketplace_inventory_feed",
+      "marketplace_return_case",
+      "external_fulfillment_order",
+      "listing_binding",
+      "marketplace_fulfillment_order",
+      "inventory_balance",
+      "refund_case",
+      "delivery_exception_case"
+    ],
+    "downstream_docs": [
+      "marketplace_return_case",
+      "refund_case"
+    ],
+    "actors": [
+      "account owner",
+      "operations coordinator",
+      "case owner"
+    ],
+    "downstream_effects": [],
+    "emits_records": [
+      {
+        "action_id": "close",
+        "target_doc": "marketplace_return_case",
+        "effect_type": "create_record"
+      },
+      {
+        "action_id": "approve",
+        "target_doc": "refund_case",
+        "effect_type": "create_record"
+      },
+      {
+        "action_id": "close",
+        "target_doc": "refund_case",
+        "effect_type": "create_record"
+      }
+    ],
+    "handoff_targets": [
+      "marketplace_account",
+      "marketplace_inventory_feed",
+      "marketplace_return_case",
+      "external_fulfillment_order",
+      "listing_binding",
+      "marketplace_fulfillment_order",
+      "inventory_balance",
+      "refund_case",
+      "delivery_exception_case"
+    ],
+    "graph_edges": [
+      {
+        "source_doc": "marketplace_fulfillment_order",
+        "target_doc": "marketplace_account",
+        "relation": "references"
+      },
+      {
+        "source_doc": "marketplace_fulfillment_order",
+        "target_doc": "marketplace_inventory_feed",
+        "relation": "references"
+      },
+      {
+        "source_doc": "marketplace_fulfillment_order",
+        "target_doc": "marketplace_return_case",
+        "relation": "references"
+      },
+      {
+        "source_doc": "marketplace_fulfillment_order",
+        "target_doc": "external_fulfillment_order",
+        "relation": "references"
+      },
+      {
+        "source_doc": "marketplace_fulfillment_order",
+        "target_doc": "marketplace_return_case",
+        "relation": "create_record",
+        "action_id": "close"
+      },
+      {
+        "source_doc": "marketplace_inventory_feed",
+        "target_doc": "marketplace_account",
+        "relation": "references"
+      },
+      {
+        "source_doc": "marketplace_inventory_feed",
+        "target_doc": "listing_binding",
+        "relation": "references"
+      },
+      {
+        "source_doc": "marketplace_inventory_feed",
+        "target_doc": "marketplace_fulfillment_order",
+        "relation": "references"
+      },
+      {
+        "source_doc": "marketplace_inventory_feed",
+        "target_doc": "inventory_balance",
+        "relation": "references"
+      },
+      {
+        "source_doc": "marketplace_return_case",
+        "target_doc": "marketplace_fulfillment_order",
+        "relation": "references"
+      },
+      {
+        "source_doc": "marketplace_return_case",
+        "target_doc": "listing_binding",
+        "relation": "references"
+      },
+      {
+        "source_doc": "marketplace_return_case",
+        "target_doc": "refund_case",
+        "relation": "references"
+      },
+      {
+        "source_doc": "marketplace_return_case",
+        "target_doc": "delivery_exception_case",
+        "relation": "references"
+      },
+      {
+        "source_doc": "marketplace_return_case",
+        "target_doc": "refund_case",
+        "relation": "create_record",
+        "action_id": "approve"
+      },
+      {
+        "source_doc": "marketplace_return_case",
+        "target_doc": "refund_case",
+        "relation": "create_record",
+        "action_id": "close"
+      }
+    ],
+    "operating_graph": {
+      "nodes": [
+        {
+          "id": "marketplace_account",
+          "kind": "doc"
+        },
+        {
+          "id": "marketplace_inventory_feed",
+          "kind": "doc"
+        },
+        {
+          "id": "marketplace_return_case",
+          "kind": "doc"
+        },
+        {
+          "id": "external_fulfillment_order",
+          "kind": "doc"
+        },
+        {
+          "id": "listing_binding",
+          "kind": "doc"
+        },
+        {
+          "id": "marketplace_fulfillment_order",
+          "kind": "doc"
+        },
+        {
+          "id": "inventory_balance",
+          "kind": "doc"
+        },
+        {
+          "id": "refund_case",
+          "kind": "doc"
+        },
+        {
+          "id": "delivery_exception_case",
+          "kind": "doc"
+        }
+      ],
+      "edges": [
+        {
+          "source_doc": "marketplace_fulfillment_order",
+          "target_doc": "marketplace_account",
+          "relation": "references"
+        },
+        {
+          "source_doc": "marketplace_fulfillment_order",
+          "target_doc": "marketplace_inventory_feed",
+          "relation": "references"
+        },
+        {
+          "source_doc": "marketplace_fulfillment_order",
+          "target_doc": "marketplace_return_case",
+          "relation": "references"
+        },
+        {
+          "source_doc": "marketplace_fulfillment_order",
+          "target_doc": "external_fulfillment_order",
+          "relation": "references"
+        },
+        {
+          "source_doc": "marketplace_fulfillment_order",
+          "target_doc": "marketplace_return_case",
+          "relation": "create_record",
+          "action_id": "close"
+        },
+        {
+          "source_doc": "marketplace_inventory_feed",
+          "target_doc": "marketplace_account",
+          "relation": "references"
+        },
+        {
+          "source_doc": "marketplace_inventory_feed",
+          "target_doc": "listing_binding",
+          "relation": "references"
+        },
+        {
+          "source_doc": "marketplace_inventory_feed",
+          "target_doc": "marketplace_fulfillment_order",
+          "relation": "references"
+        },
+        {
+          "source_doc": "marketplace_inventory_feed",
+          "target_doc": "inventory_balance",
+          "relation": "references"
+        },
+        {
+          "source_doc": "marketplace_return_case",
+          "target_doc": "marketplace_fulfillment_order",
+          "relation": "references"
+        },
+        {
+          "source_doc": "marketplace_return_case",
+          "target_doc": "listing_binding",
+          "relation": "references"
+        },
+        {
+          "source_doc": "marketplace_return_case",
+          "target_doc": "refund_case",
+          "relation": "references"
+        },
+        {
+          "source_doc": "marketplace_return_case",
+          "target_doc": "delivery_exception_case",
+          "relation": "references"
+        },
+        {
+          "source_doc": "marketplace_return_case",
+          "target_doc": "refund_case",
+          "relation": "create_record",
+          "action_id": "approve"
+        },
+        {
+          "source_doc": "marketplace_return_case",
+          "target_doc": "refund_case",
+          "relation": "create_record",
+          "action_id": "close"
+        }
+      ]
+    }
+  },
+  "contract_version": 1
 }

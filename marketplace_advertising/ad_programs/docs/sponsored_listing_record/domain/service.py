@@ -2,14 +2,16 @@
 
 from __future__ import annotations
 
+from typing import Any
+
 
 ARCHETYPE_PROFILE = {'workflow_profile': {'mode': 'transaction_flow', 'supports_submission': True}, 'reporting_profile': {'supports_snapshots': True, 'supports_outputs': True}, 'integration_profile': {'external_sync_enabled': True, 'tracks_external_refs': True}, 'lifecycle_states': ['draft', 'active', 'paused', 'ended', 'archived'], 'is_transactional': True}
 
-CONTRACT = {'title_field': 'title', 'status_field': 'workflow_state', 'reference_field': 'reference_no', 'required_fields': ['title', 'workflow_state', 'transaction_date'], 'field_purposes': {'workflow_state': 'lifecycle_state', 'transaction_date': 'transaction_date', 'party': 'primary_party', 'currency': 'currency_code', 'total_amount': 'total_amount', 'listing_status': 'status_flag', 'related_marketplace_campaign': 'relation_collection', 'related_listing_binding': 'relation_collection', 'related_campaign_performance_snapshot': 'relation_collection'}, 'search_fields': ['title', 'reference_no', 'description', 'sponsored_listing_code', 'source_campaign', 'linked_listing'], 'list_columns': ['title', 'reference_no', 'transaction_date', 'party', 'total_amount', 'workflow_state'], 'initial_state': 'draft', 'lifecycle_states': ['draft', 'active', 'paused', 'ended', 'archived'], 'terminal_states': ['archived'], 'action_targets': {'create': None, 'activate': 'active', 'pause': None, 'end': None, 'archive': 'archived'}}
+CONTRACT = {'title_field': 'title', 'status_field': 'workflow_state', 'reference_field': 'reference_no', 'required_fields': ['title', 'workflow_state', 'transaction_date'], 'field_purposes': {'workflow_state': 'lifecycle_state', 'transaction_date': 'transaction_date', 'party': 'primary_party', 'currency': 'currency_code', 'total_amount': 'total_amount', 'listing_status': 'status_flag', 'related_marketplace_campaign': 'relation_collection', 'related_listing_binding': 'relation_collection', 'related_campaign_performance_snapshot': 'relation_collection'}, 'search_fields': ['title', 'reference_no', 'description', 'sponsored_listing_code', 'source_campaign', 'linked_listing'], 'list_columns': ['title', 'reference_no', 'transaction_date', 'party', 'total_amount', 'workflow_state'], 'initial_state': 'draft', 'lifecycle_states': ['draft', 'active', 'paused', 'ended', 'archived'], 'terminal_states': ['archived'], 'records_profile': {'record_class': 'business_record', 'legal_significance': 'standard', 'confidentiality': 'internal', 'official_copy_format': 'pdf', 'evidence_gaps': []}, 'record_contract': {'doc_kind': 'transaction', 'supports_attachments': True, 'supports_comments': True, 'supports_activity_log': True, 'supports_assignments': True, 'is_submittable': False, 'supports_submission_snapshot': True, 'supports_official_outputs': True, 'supports_evidence_pack': True, 'supports_signoff': False}, 'submission_snapshot_policy': {'enabled': True, 'trigger_action': 'submit', 'freeze_fields_after_snapshot': True, 'retain_snapshot_history': True, 'snapshot_label_template': '{reference_no}-{workflow_state}', 'trigger_actions': ['submit']}, 'signature_policy': {'enabled': False, 'mode': 'approval', 'required_roles': [], 'reason_required': False, 'counter_signature_required': False}, 'audit_policy': {'track_state_history': True, 'track_action_log': True, 'track_external_refs': True, 'require_reason_for_change': False, 'require_action_comment': False, 'hash_official_outputs': False}, 'records_management': {'retention_policy_ref': 'administration.office_administration.filing_records_management.retention_disposal.retention_policy', 'legal_hold_enabled': False, 'disposition_action': 'archive', 'immutable_after_submit': True, 'official_copy_on_submit': False, 'chain_of_custody_required': False, 'retention_trigger_field': None, 'legal_hold_field': None, 'disposition_actions': ['archive']}, 'legal_hold_policy': {'enabled': False, 'hold_field': None, 'restrict_disposition_while_active': True, 'allow_override_roles': []}, 'official_copy_policy': {'enabled': True, 'format': 'pdf', 'generate_on_submit': False, 'hash_outputs': False, 'include_audit_summary': True, 'include_attachments_index': True, 'trigger_actions': []}, 'evidence_policy': {'required_attachments': [], 'required_references': [], 'required_approvals': [], 'verification_fields': []}, 'chain_of_custody_policy': {'enabled': False, 'custody_event_field': None, 'require_transfer_reason': False, 'require_actor_identity': True}, 'display_runtime_hints': {'doc_key': 'sponsored_listing_record', 'supports_related_lookup': True, 'supports_fetch_rules': True, 'action_side_effects_file': 'side_effects.json', 'supports_official_copy': True, 'supports_evidence_timeline': True, 'supports_chain_of_custody': False}, 'action_contracts': {'create': {'rule': {'allowed_in_states': ['draft', 'active', 'paused', 'ended'], 'transitions_to': None}, 'requires_action_comment': False, 'requires_reason_for_change': False, 'requires_evidence': False, 'is_disposition_action': False, 'creates_submission_snapshot': False, 'creates_official_copy': False, 'requires_signature': False}, 'activate': {'rule': {'allowed_in_states': ['draft'], 'transitions_to': 'active'}, 'requires_action_comment': False, 'requires_reason_for_change': False, 'requires_evidence': False, 'is_disposition_action': False, 'creates_submission_snapshot': False, 'creates_official_copy': False, 'requires_signature': False}, 'pause': {'rule': {'allowed_in_states': ['draft', 'active', 'paused', 'ended'], 'transitions_to': None}, 'requires_action_comment': False, 'requires_reason_for_change': False, 'requires_evidence': False, 'is_disposition_action': False, 'creates_submission_snapshot': False, 'creates_official_copy': False, 'requires_signature': False}, 'end': {'rule': {'allowed_in_states': ['draft', 'active', 'paused', 'ended'], 'transitions_to': None}, 'requires_action_comment': False, 'requires_reason_for_change': False, 'requires_evidence': False, 'is_disposition_action': False, 'creates_submission_snapshot': False, 'creates_official_copy': False, 'requires_signature': False}, 'archive': {'rule': {'allowed_in_states': ['draft', 'active', 'paused', 'ended'], 'transitions_to': 'archived'}, 'requires_action_comment': False, 'requires_reason_for_change': False, 'requires_evidence': False, 'is_disposition_action': True, 'creates_submission_snapshot': False, 'creates_official_copy': False, 'requires_signature': False}}, 'action_targets': {'create': None, 'activate': 'active', 'pause': None, 'end': None, 'archive': 'archived'}}
 
 WORKFLOW_HINTS = {}
 
-SIDE_EFFECT_HINTS = {'downstream_effects': [], 'related_docs': ['marketplace_campaign', 'listing_binding', 'campaign_performance_snapshot'], 'action_targets': {'create': None, 'activate': 'active', 'pause': None, 'end': None, 'archive': 'archived'}, 'action_side_effects_file': 'side_effects.json'}
+SIDE_EFFECT_HINTS = {'downstream_effects': [], 'related_docs': ['marketplace_campaign', 'listing_binding', 'campaign_performance_snapshot', 'party_record'], 'action_targets': {'create': None, 'activate': 'active', 'pause': None, 'end': None, 'archive': 'archived'}, 'action_side_effects_file': None}
 
 class DomainService:
     doc_id = "sponsored_listing_record"
@@ -27,6 +29,87 @@ class DomainService:
 
     def list_columns(self) -> list[str]:
         return CONTRACT.get("list_columns", [])
+
+    def records_profile(self) -> dict[str, Any]:
+        return CONTRACT.get("records_profile", {})
+
+    def record_contract(self) -> dict[str, Any]:
+        return CONTRACT.get("record_contract", {})
+
+    def submission_snapshot_policy(self) -> dict[str, Any]:
+        return CONTRACT.get("submission_snapshot_policy", {})
+
+    def signature_policy(self) -> dict[str, Any]:
+        return CONTRACT.get("signature_policy", {})
+
+    def records_management_policy(self) -> dict[str, Any]:
+        return CONTRACT.get("records_management", {})
+
+    def legal_hold_policy(self) -> dict[str, Any]:
+        return CONTRACT.get("legal_hold_policy", {})
+
+    def official_copy_policy(self) -> dict[str, Any]:
+        return CONTRACT.get("official_copy_policy", {})
+
+    def evidence_policy(self) -> dict[str, Any]:
+        return CONTRACT.get("evidence_policy", {})
+
+    def chain_of_custody_policy(self) -> dict[str, Any]:
+        return CONTRACT.get("chain_of_custody_policy", {})
+
+    def audit_policy(self) -> dict[str, Any]:
+        return CONTRACT.get("audit_policy", {})
+
+    def _requires_reason_for_change(self) -> bool:
+        return bool(self.audit_policy().get("require_reason_for_change"))
+
+    def _requires_action_comment(self) -> bool:
+        return bool(self.audit_policy().get("require_action_comment"))
+
+    def _is_hold_active(self, context: dict | None = None) -> bool:
+        context = context or {}
+        legal_hold = context.get("legal_hold")
+        if legal_hold is None:
+            legal_hold = context.get("has_legal_hold")
+        if legal_hold is None:
+            legal_hold = (context.get("record_flags") or {}).get("legal_hold")
+        return bool(legal_hold)
+
+    def _action_requires_evidence(self, action_id: str) -> bool:
+        policy = self.evidence_policy()
+        required_actions = set(policy.get("required_for_actions", []))
+        return bool(policy.get("required") or action_id in required_actions)
+
+    def validate_action_compliance(
+        self,
+        action_id: str,
+        payload: dict,
+        *,
+        state: str | None = None,
+        context: dict | None = None,
+    ) -> dict:
+        payload = dict(payload)
+        disposition_actions = set(self.records_management_policy().get("disposition_actions", []))
+        if action_id in disposition_actions and self._is_hold_active(context):
+            raise ValueError("This record is under legal hold and cannot be dispositioned.")
+        if self._requires_action_comment() and not payload.get("action_comment"):
+            raise ValueError("Action comment is required for this record action.")
+        if self._requires_reason_for_change() and not payload.get("reason_for_change"):
+            raise ValueError("Reason for change is required for this record action.")
+        if self._action_requires_evidence(action_id):
+            attachments = payload.get("attachments") or []
+            references = payload.get("evidence_refs") or payload.get("related_evidence") or []
+            if not attachments and not references:
+                raise ValueError("Evidence attachments or references are required for this action.")
+        action_contracts = CONTRACT.get("action_contracts", {})
+        action_contract = action_contracts.get(action_id, {}) if isinstance(action_contracts, dict) else {}
+        if action_contract.get("requires_signature"):
+            actor = ((context or {}).get("request") or None)
+            user = getattr(actor, "user", None) if actor is not None else None
+            is_authenticated = bool(user and getattr(user, "is_authenticated", False))
+            if not (payload.get("signature") or payload.get("signature_name") or is_authenticated):
+                raise ValueError("A signature or authenticated approver is required for this approval action.")
+        return payload
 
     def validate_invariants(self, payload: dict, *, partial: bool = False) -> dict:
         if partial:
@@ -73,9 +156,74 @@ class DomainService:
         action_result: dict,
         context: dict | None = None,
     ) -> dict:
+        payload = self.validate_action_compliance(
+            action_id,
+            payload,
+            state=(context or {}).get("state") if context else None,
+            context=context,
+        )
+        side_effects: list[dict[str, Any]] = []
+        request = (context or {}).get("request") if context else None
+        user = getattr(request, "user", None) if request is not None else None
+        actor_name = payload.get("signature_name") or getattr(user, "username", None)
+        side_effects.append(
+            {
+                "kind": "action_audit_log",
+                "action_id": action_id,
+                "actor": actor_name,
+                "comment": payload.get("action_comment"),
+                "reason_for_change": payload.get("reason_for_change"),
+                "requires_reason": self._requires_reason_for_change(),
+                "requires_comment": self._requires_action_comment(),
+            }
+        )
+        snapshot_policy = self.submission_snapshot_policy()
+        snapshot_triggers = set(snapshot_policy.get("trigger_actions", []))
+        if snapshot_policy.get("enabled") and action_id in snapshot_triggers:
+            side_effects.append(
+                {
+                    "kind": "submission_snapshot",
+                    "action_id": action_id,
+                    "mode": snapshot_policy.get("mode"),
+                    "immutable": snapshot_policy.get("immutable"),
+                    "label_template": snapshot_policy.get("snapshot_label_template"),
+                }
+            )
+        official_copy_policy = self.official_copy_policy()
+        if official_copy_policy.get("enabled") and action_id in set(official_copy_policy.get("trigger_actions", [])):
+            side_effects.append(
+                {
+                    "kind": "official_copy",
+                    "action_id": action_id,
+                    "format": official_copy_policy.get("format"),
+                    "hash": "sha1" if official_copy_policy.get("hash_outputs") else None,
+                }
+            )
+        if self.chain_of_custody_policy().get("enabled"):
+            side_effects.append(
+                {
+                    "kind": "chain_of_custody_event",
+                    "action_id": action_id,
+                    "capture_actor": self.chain_of_custody_policy().get("capture_actor"),
+                    "capture_timestamp": self.chain_of_custody_policy().get("capture_timestamp"),
+                }
+            )
+        action_contracts = CONTRACT.get("action_contracts", {})
+        action_contract = action_contracts.get(action_id, {}) if isinstance(action_contracts, dict) else {}
+        if action_contract.get("requires_signature"):
+            signer = actor_name
+            side_effects.append(
+                {
+                    "kind": "approval_signature",
+                    "action_id": action_id,
+                    "signature_name": signer,
+                    "required_roles": self.signature_policy().get("required_roles", []),
+                    "reason_required": self.signature_policy().get("reason_required"),
+                }
+            )
         return {
             "updates": {},
-            "side_effects": [],
+            "side_effects": side_effects,
         }
 
     def shape_retrieve_data(self, instance, serialized_data: dict, context: dict | None = None) -> dict:
@@ -94,4 +242,9 @@ class DomainService:
             "required_fields": self.required_fields(),
             "state_field": self.state_field(),
             "default_state": self.default_state(),
+            "is_submittable": bool(self.record_contract().get("is_submittable")),
+            "supports_submission_snapshot": bool(self.record_contract().get("supports_submission_snapshot")),
+            "supports_official_outputs": bool(self.record_contract().get("supports_official_outputs")),
+            "supports_evidence_pack": bool(self.record_contract().get("supports_evidence_pack")),
+            "supports_signoff": bool(self.record_contract().get("supports_signoff")),
         }
